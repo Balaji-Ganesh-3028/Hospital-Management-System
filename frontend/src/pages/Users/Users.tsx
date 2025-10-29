@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './Users.css';
 import UserList from './UserList/UserList';
-import UserProfile from '../UserProfile/UserProfile';
+import UserProfile from './UserProfile/UserProfile';
 
 const Users: React.FC = () => {
   const [activeTab, setActiveTab] = useState('userList');
 
   return (
-    <div className="users-container">
-      <div className="users-tabs">
+    <div className="app-container">
+      <div className="app-tabs">
         <button
           className={activeTab === 'userList' ? 'active' : ''}
           onClick={() => setActiveTab('userList')}
@@ -22,7 +22,7 @@ const Users: React.FC = () => {
           User Profile
         </button>
       </div>
-      <div className="users-content">
+      <div className="app-content">
         {activeTab === 'userList' && <UserList />}
         {activeTab === 'userProfile' && <UserProfile />}
       </div>

@@ -13,7 +13,7 @@ const UserList: React.FC = () => {
       <div className="user-list-actions">
         <button><i className="fas fa-plus"></i> Add User</button>
       </div>
-      <table className="user-list-table">
+      <table className="app-table">
         <thead>
           <tr>
             <th>ID</th>

@@ -1,13 +1,13 @@
-.user-list-container {
+.doctor-list-container {
   padding: 20px;
 }
 
-.user-list-actions {
+.doctor-list-actions {
   margin-bottom: 20px;
   text-align: right;
 }
 
-.user-list-actions button {
+.doctor-list-actions button {
   background-color: var(--primary-color);
   color: var(--white-color);
   border: none;
@@ -17,6 +17,6 @@
   font-size: 16px;
 }
 
-.user-list-actions button:hover {
+.doctor-list-actions button:hover {
   background-color: var(--primary-dark-color);
 }

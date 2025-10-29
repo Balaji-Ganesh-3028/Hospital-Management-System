@@ -33,5 +33,6 @@
 }
 
 .sidebar-nav li a:hover {
-  background-color: #e9ecef;
+  background-color: var(--primary-light-color);
+  color: var(--white-color);
 }

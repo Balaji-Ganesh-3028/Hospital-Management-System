@@ -1,0 +1,160 @@
+.app-container {
+  padding: 2rem;
+}
+
+/* Common styles for tabs */
+.app-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--white-color);
+  padding: 0.5rem;
+  border-radius: .25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 2rem;
+  border-bottom: none;
+}
+
+.app-tabs button {
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--dark-color);
+  border-radius: .25rem;
+  transition: all 0.3s ease;
+}
+
+.app-tabs button:hover {
+  background-color: #e9ecef;
+  color: var(--primary-color);
+}
+
+.app-tabs button.active {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border-color: var(--primary-color);
+}
+
+/* Common styles for content areas */
+.app-content {
+  background-color: var(--white-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-content > * {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Common styles for forms */
+.app-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-form .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.app-form .form-group label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.app-form .form-group input[type="text"],
+.app-form .form-group input[type="date"],
+.app-form .form-group select,
+.app-form .form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app-form .form-group input[type="date"]:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.app-form .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.app-form .submit-button {
+  grid-column: 1 / -1;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.app-form .submit-button:hover {
+  background-color: var(--primary-dark-color);
+}
+
+/* Common styles for tables */
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.app-table th,
+.app-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.app-table th {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  font-weight: bold;
+}
+
+.app-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.app-table .edit-btn,
+.app-table .delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.app-table .edit-btn {
+  color: var(--info-color);
+}
+
+.app-table .delete-btn {
+  color: var(--danger-color);
+}

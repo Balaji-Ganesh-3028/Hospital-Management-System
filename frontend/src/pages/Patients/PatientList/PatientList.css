@@ -1,13 +1,13 @@
-.user-list-container {
+.patient-list-container {
   padding: 20px;
 }
 
-.user-list-actions {
+.patient-list-actions {
   margin-bottom: 20px;
   text-align: right;
 }
 
-.user-list-actions button {
+.patient-list-actions button {
   background-color: var(--primary-color);
   color: var(--white-color);
   border: none;
@@ -17,6 +17,6 @@
   font-size: 16px;
 }
 
-.user-list-actions button:hover {
+.patient-list-actions button:hover {
   background-color: var(--primary-dark-color);
 }
