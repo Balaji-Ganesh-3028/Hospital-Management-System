@@ -1,0 +1,64 @@
+.user-list-container {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: .25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.user-list-actions {
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.user-list-actions button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: .75rem 1.5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-list-table th,
+.user-list-table td {
+  border: 1px solid #dee2e6;
+  padding: .75rem;
+  text-align: left;
+}
+
+.user-list-table th {
+  background-color: var(--light-color);
+}
+
+.user-list-table .edit-btn,
+.user-list-table .delete-btn {
+  border: none;
+  padding: .5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  margin-right: .5rem;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-list-table .edit-btn {
+  background-color: var(--warning-color);
+  color: var(--white-color);
+}
+
+.user-list-table .delete-btn {
+  background-color: var(--danger-color);
+  color: var(--white-color);
+}

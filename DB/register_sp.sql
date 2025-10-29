@@ -3,7 +3,7 @@ CREATE OR ALTER PROCEDURE sp_register
   @userName VARCHAR(150),
   @email VARCHAR(255),
   @passwordHash VARCHAR(255),
-  @roleCode VARCHAR(50)
+  @roleId INT
 )
 AS
 
@@ -15,16 +15,16 @@ BEGIN
   FROM UserDirectory
   WHERE email = @email)
   BEGIN
-    SELECT @email AS email, 'Exists' AS message
+    SELECT @email AS Email, 'Exists' AS message
   END;
 
   ELSE
   INSERT INTO UserDirectory
-    (userName, email, passwordHash, roleCode)
+    (UserName, Email, PasswordHash, RoleId)
   VALUES
-    (@userName, @email, @passwordHash, @roleCode);
+    (@userName, @email, @passwordHash, @roleId);
 
-  SELECT @userName AS userName, 'Registered' AS message;
+  SELECT @userName AS UserName, 'Registered' AS message;
 END;
 
 

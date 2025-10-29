@@ -1,8 +1,53 @@
+using BusinessLayer.Implementation;
+using BusinessLayer.Interface;
+using DataAccessLayer.Implementation;
+using DataAccessLayer.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//JWT configuration
+var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<String>();
+var jwtKey = builder.Configuration.GetSection("Jwt:key").Get<String>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+    };
+});
+
+
+builder.Services.AddCors(Options =>
+{
+    Options.AddPolicy("Cros-Policy", builder =>
+    {
+        builder.WithOrigins(
+            "http://localhost:3000",
+            "http://192.168.1.6:3000"
+        ).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IRegisterDAL, RegisterDAL>();
+builder.Services.AddScoped<IRegisterService, RegisterBL>();
+
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,6 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("Cros-Policy");
 
 app.UseAuthorization();
 

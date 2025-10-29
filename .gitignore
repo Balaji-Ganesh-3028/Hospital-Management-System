@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+package-lock.json
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+/backend/bin/Debug/net8.0
+/BusinessLayer/bin/Debug/net8.0
+/BusinessLayer/obj
+/DataAccessLayer/bin/Debug/net8.0
+/DataAccessLayer/obj
+backend/.vs
+backend/obj
+/ClassLibrary1/obj
+*backend/.vs/
+*backend/obj/

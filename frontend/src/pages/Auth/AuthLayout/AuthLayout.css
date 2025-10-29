@@ -57,7 +57,7 @@
   color: #222;
 }
 
-.auth-form input {
+.auth-form input, .auth-form select {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -66,7 +66,7 @@
   transition: 0.3s;
 }
 
-.auth-form input:focus {
+.auth-form input:focus, .auth-form select:focus {
   border-color: #1e88e5;
 }
 

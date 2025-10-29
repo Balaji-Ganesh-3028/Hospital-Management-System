@@ -9,10 +9,12 @@ BEGIN
 
   IF EXISTS ( SELECT 1
   FROM UserDirectory
-  WHERE email = @email AND passwordHash = @password)
+  WHERE Email = @email AND PasswordHash = @password)
 
   BEGIN
-    SELECT 'Login successful' AS message
+    SELECT Email, Id, roleId, UserName, 'Login successful' AS message
+    FROM UserDirectory
+    WHERE Email = @email AND PasswordHash = @password
   END
 
   -- If email exist, but password is mismatch
@@ -21,13 +23,13 @@ BEGIN
   WHERE email = @email)
   
   BEGIN
-    SELECT @email AS email, 'Mismatch' AS message;
+    SELECT @email AS Email, 'Mismatch' AS message;
   END
   
   -- If email is not found 
   ELSE
   BEGIN
-    SELECT @email AS email, 'NotFound' AS message;
+    SELECT @email AS Email, 'NotFound' AS message;
   END
 END;
 
