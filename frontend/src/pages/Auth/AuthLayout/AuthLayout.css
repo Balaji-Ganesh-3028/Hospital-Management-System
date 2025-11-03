@@ -1,4 +1,11 @@
 /* Center everything on page */
+.auth-layout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .auth-wrapper {
   display: flex;
   justify-content: center;

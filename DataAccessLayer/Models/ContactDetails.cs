@@ -9,7 +9,7 @@ namespace DataAccessLayer.Models
     public class ContactDetails
     {
         public int UserId { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string doorFloorBuilding { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }

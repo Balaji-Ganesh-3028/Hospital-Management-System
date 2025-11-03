@@ -28,4 +28,4 @@ BEGIN
 END;
 
 
-EXEC sp_register 'Test User', 'testuser@gmail.com', 'Test@123', 'USER';
+EXEC sp_register 'Balaji', 'balaji@gmail.com', 'Admin@123', 1001;

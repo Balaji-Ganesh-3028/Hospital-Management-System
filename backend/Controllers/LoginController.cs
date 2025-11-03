@@ -45,16 +45,19 @@ namespace backend.Controllers
                                     {
                                         roleId = reader["roleId"].ToString(),
                                         userName = reader["UserName"].ToString(),
-                                        email = reader["Email"].ToString()
-                                    };
-
-                                    var data = new
-                                    {
-                                        message = userName + " logged in successfully."
+                                        email = reader["Email"].ToString(),
+                                        roleName = reader["RoleName"].ToString(),
+                                        userId = (int)reader["id"]
                                     };
 
                                     token = GenerateToken.CreateToken(claims);
-                                    return StatusCode(200, new { data = data, token = token });
+                                    return StatusCode(200, new
+                                    {
+                                        data = claims,
+                                        txt = "Success",
+                                        message = userName + " logged in successfully.",
+                                        token = token
+                                    });
                                 }
                                 return BadRequest("Login failed, Something went wrong!!");
                             }

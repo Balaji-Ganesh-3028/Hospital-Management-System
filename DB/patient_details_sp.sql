@@ -8,6 +8,7 @@ CREATE OR ALTER PROCEDURE sp_update_patient_details(
   @emergencyContactNumber VARCHAR(15),
   @insuranceProvider VARCHAR(255),
   @insuranceNumber VARCHAR(150),
+  @MedicalHistoryNotes NVARCHAR(255),
   @updatedAt DATETIME = NULL,
   @createdBy NVARCHAR(255) = 'SYSTEM',
   @updatedBy NVARCHAR(255) = 'SYSTEM'
@@ -15,7 +16,7 @@ CREATE OR ALTER PROCEDURE sp_update_patient_details(
 AS
 BEGIN
 
-  SET NOCOUNT ON;
+  -- SET NOCOUNT ON;
 
   IF @UpdatedAt IS NULL 
   SET @UpdatedAt = GETDATE();
@@ -37,6 +38,7 @@ BEGIN
         EmergencyContactNumber = @emergencyContactNumber,
         InsuranceProvider = @insuranceProvider,
         InsuranceNumber = @insuranceNumber,
+        MedicalHistoryNotes = @MedicalHistoryNotes,
         UpdatedAt = @UpdatedAt,
         UpdatedBy = @UpdatedBy
       WHERE UserId = @UserId;
@@ -56,6 +58,7 @@ BEGIN
       EmergencyContactNumber,
       InsuranceProvider,
       InsuranceNumber,
+      MedicalHistoryNotes,
       CreatedBy
       )
     VALUES
@@ -69,6 +72,7 @@ BEGIN
         @emergencyContactNumber,
         @insuranceProvider,
         @insuranceNumber,
+        @MedicalHistoryNotes,
         @CreatedBy
     );
   END;

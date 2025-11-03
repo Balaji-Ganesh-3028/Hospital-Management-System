@@ -5,6 +5,7 @@ CREATE OR ALTER PROCEDURE sp_update_user_profile(
   @DOB DATE,
   @gender INT,
   @age INT,
+  @UserType INT,
   @CreatedBy NVARCHAR(255) = 'SYSTEM',
   @UpdatedAt DATETIME = NULL,
   @UpdatedBy NVARCHAR(255) = 'SYSTEM'

@@ -1,16 +1,20 @@
-import { useState } from "react";
 import "./AuthLayout.css";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import { useSearchParams } from "react-router-dom";
 
 const AuthPage = () => {
-  const [activeTab, setActiveTab] = useState("login");
+  // const [activeTab, setActiveTab] = useState("login");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeTab = searchParams.get('page') || 'login';
 
   const switchTab = (tab: string) => {
-    setActiveTab(tab);
+    setSearchParams({ page: tab });
   };
 
   return (
+    <div className="auth-layout">
     <div className="auth-wrapper">
       <div className="auth-container">
         {/* Tabs */}
@@ -36,11 +40,12 @@ const AuthPage = () => {
           )}
 
           {activeTab === "signup" && (
-            <Register />
+            <Register onRegisterSuccess={() => setSearchParams("login")} />
           )}
         </div>
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 

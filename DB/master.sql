@@ -88,6 +88,9 @@ CREATE TABLE PatientDetails
   UpdatedBy NVARCHAR(255) NOT NULL DEFAULT 'SYSTEM'
 )
 
+ALTER TABLE PatientDetails
+ADD MedicalHistoryNotes NVARCHAR(255);
+
 
 -- Doctor Directory Table
 -- Stores doctor information
@@ -255,6 +258,14 @@ VALUES
   ('Cancelled', 'Cancelled', 'appointment_status', 'The appointment has been cancelled by either party.'),
   ('No-Show', 'No-Show', 'appointment_status', 'The patient did not show up for the scheduled appointment.'),
   ('Rescheduled', 'Rescheduled', 'appointment_status', 'The appointment has been rescheduled to a different date/time.');
+
+INSERT INTO MasterData
+  (Name, Value, Category, Description)
+VALUES
+  ('Patient', 'Patient', 'user_type', 'The user is a patient.'),
+  ('Doctor', 'Doctor', 'user_type', 'The user is a doctor.'),
+  ('Nurse', 'Nurse', 'user_type', 'The user is a nurse.');
+
 -- SELECT QUERIES
 SELECT *
 FROM UserDirectory;
@@ -292,11 +303,16 @@ SELECT *
 FROM MasterData
 WHERE Category = 'appointment_status';
 
+SELECT *
+FROM MasterData
+WHERE Category = 'gender';
+
 
 -- DROP TABLES
 DROP TABLE UserDirectory
 DROP TABLE Roles
 DROP TABLE UserProfile
+DROP TABLE UserContactDetails
 DROP TABLE PatientDetails
 DROP TABLE DoctorDetails
 DROP TABLE MasterData

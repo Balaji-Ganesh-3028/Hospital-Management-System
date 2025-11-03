@@ -8,7 +8,6 @@ namespace DataAccessLayer.Implementation
 {
     public class RegisterDAL : IRegisterDAL
     {
-        private readonly IRegisterDAL _registerDAL;
         private readonly IConfiguration _connectionString;
         private readonly string _dbConnectionString;
         public RegisterDAL(IConfiguration configuration)

@@ -44,6 +44,10 @@ builder.Services.AddCors(Options =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<IRegisterDAL, RegisterDAL>();
 builder.Services.AddScoped<IRegisterService, RegisterBL>();
+builder.Services.AddScoped<IUserProfileBL, UserProfileBL>();
+builder.Services.AddScoped<IUserProfileDAL, UserProfileDAL>();
+builder.Services.AddScoped<IPatientBL, PatientBL>();
+builder.Services.AddScoped<IPatientDAL, PatientDAL>();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 

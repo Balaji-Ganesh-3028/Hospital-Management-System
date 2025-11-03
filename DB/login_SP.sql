@@ -12,8 +12,9 @@ BEGIN
   WHERE Email = @email AND PasswordHash = @password)
 
   BEGIN
-    SELECT Email, Id, roleId, UserName, 'Login successful' AS message
-    FROM UserDirectory
+    SELECT Email, ud.Id, roleId, UserName, RoleName, 'Login successful' AS message
+    FROM UserDirectory AS ud
+      INNER JOIN Roles ON ud.roleId = Roles.id
     WHERE Email = @email AND PasswordHash = @password
   END
 
