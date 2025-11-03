@@ -34,3 +34,5 @@ backend/obj
 /ClassLibrary1/obj
 *backend/.vs/
 *backend/obj/
+frontend/package-lock.json
+/frontend/package-lock.json
