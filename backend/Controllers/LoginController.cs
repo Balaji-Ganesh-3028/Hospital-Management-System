@@ -47,7 +47,9 @@ namespace backend.Controllers
                                         userName = reader["UserName"].ToString(),
                                         email = reader["Email"].ToString(),
                                         roleName = reader["RoleName"].ToString(),
-                                        userId = (int)reader["id"]
+                                        userId = (int)reader["id"],
+                                        UserType = reader["UserType"].ToString(),
+                                        UserTypeId = (int)reader["UserTypeId"]
                                     };
 
                                     token = GenerateToken.CreateToken(claims);

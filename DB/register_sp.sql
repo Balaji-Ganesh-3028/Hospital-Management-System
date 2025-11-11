@@ -11,20 +11,37 @@ BEGIN
 
   SET NOCOUNT ON;
 
-  IF EXISTS (SELECT 1
+
+  DECLARE @InsertedId INT;
+
+  IF EXISTS (
+      SELECT 1
   FROM UserDirectory
-  WHERE email = @email)
+  WHERE Email = @email
+  )
   BEGIN
-    SELECT @email AS Email, 'Exists' AS message
+    SELECT
+      Id,
+      Email,
+      'Exists' AS Message
+    FROM UserDirectory
+    WHERE Email = @email;
   END;
 
   ELSE
-  INSERT INTO UserDirectory
-    (UserName, Email, PasswordHash, RoleId)
-  VALUES
-    (@userName, @email, @passwordHash, @roleId);
+  BEGIN
+    INSERT INTO UserDirectory
+      (UserName, Email, PasswordHash, RoleId)
+    VALUES
+      (@userName, @email, @passwordHash, @roleId);
 
-  SELECT @userName AS UserName, 'Registered' AS message;
+    SET @InsertedId = SCOPE_IDENTITY();
+
+    SELECT
+      @InsertedId AS Id,
+      @userName AS UserName,
+      'Registered' AS Message;
+  END;
 END;
 
 

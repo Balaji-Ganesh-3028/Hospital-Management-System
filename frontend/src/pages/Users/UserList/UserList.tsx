@@ -1,90 +1,139 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './UserList.css';
-import {  DeleteUesrProfile, GetAllUserProfile } from '../../../Service/User-Profile/user-profile';
+import { DeleteUesrProfile, GetAllUserProfile } from '../../../Service/User-Profile/user-profile';
 import type { AllUserDetails } from '../../../Models/User-Profile';
 import { useNavigate } from 'react-router-dom';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
+import { FaFilter } from 'react-icons/fa';
 
 interface UserListProps {
-  onClickEdit: () => void
+  onClickEdit: () => void;
 }
+
 function UserList({ onClickEdit }: UserListProps) {
-  const [userList, SetUserList] = useState<AllUserDetails[]>([]);
+  const [userList, setUserList] = useState<AllUserDetails[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [userType, setUserType] = useState('All');
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const isFrontDesk = user?.roleName === 'Front Desk';
+  const isPatient = user?.roleName === 'Patient';
 
   useEffect(() => {
-    onload();
-  }, []);
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm.length >= 3 || searchTerm.length === 0) {
+        loadUsers();
+      }
+    }, 500);
 
-  const onload = async () => {
-    const response = await GetAllUserProfile();
-    SetUserList(response);
-  }
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    loadUsers();
+  }, [userType]);
+
+  const loadUsers = async () => {
+    try {
+      const response = await GetAllUserProfile(searchTerm, userType);
+      setUserList(response);
+    } catch (error) {
+      console.error('Error fetching user list:', error);
+      notify('Error fetching user data', ToastMessageTypes.ERROR);
+    }
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUserType(event.target.value);
+  };
 
   const navigateToUserProfile = (userId: number) => {
-    console.log(userId);
     onClickEdit();
-    navigate(`/users?page=userProfile&action=edit&userId=${userId}`)
-  }
+    navigate(`/users?page=userProfile&action=edit&userId=${userId}`);
+  };
 
   async function deleteUser(userId: number): Promise<void> {
-    const confirmed = window.confirm('Are you sure you want to delete this user?');
-    if (!confirmed) return;
-
     try {
-      // Attempt to delete on the server (adjust URL to match your API)
       const response = await DeleteUesrProfile(userId);
-      
-      if (response.includes("deleted successfully")) {
-        notify(response, ToastMessageTypes.INFO);
-        await onload();
+      if (response.includes('Success')) {
+        notify(response, ToastMessageTypes.SUCCESS);
+        await loadUsers();
       } else {
-        notify(response, ToastMessageTypes.ERROR);
+        notify('Something went wrong!!!', ToastMessageTypes.ERROR);
       }
-
-      // Update local list optimistically
     } catch (err) {
       console.error('Failed to delete user', err);
-      alert('Failed to delete user. Please try again.');
+      notify('Something went wrong!!!', ToastMessageTypes.ERROR);
     }
   }
+
   return (
     <div className="user-list-container">
-      <div className="user-list-actions">
-        <button><i className="fas fa-plus"></i> Add User</button>
+      <div className="toolbar">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search by name..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search-input"
+          />
+        </div>
+        <div className="filter-container">
+          <FaFilter className="filter-icon" />
+          <select value={userType} onChange={handleFilterChange} className="filter-select">
+            <option value="All">All</option>
+            <option value="Patient">Patient</option>
+            <option value="Doctor">Doctor</option>
+          </select>
+        </div>
       </div>
-      <table className="app-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>User Type</th>
-            <th>Phone Number</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userList.map((user) => (
-            <tr key={user.userId}>
-              <td>{user.userId}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td>{user.userType}</td>
-              <td>{user.phoneNumber}</td>
-              <td>
-                <button className="edit-btn" onClick={() =>navigateToUserProfile(user.userId)}><i className="fas fa-edit"></i></button>
-                <button className="delete-btn" onClick={() => deleteUser(user.userId)}><i className="fas fa-trash"></i></button>
-              </td>
+      <div className="table-responsive">
+        <table className="app-table">
+          <thead>
+            <tr>
+              <th>User Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>User Type</th>
+              <th>Phone Number</th>
+              {!isFrontDesk && !isPatient && <th>Actions</th>}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {userList.map((user) => (
+              <tr key={user.userId}>
+                <td>{user.userId}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td>
+                  <span className={`user-type-badge ${user.userType.toLowerCase()}`}>{user.userType}</span>
+                </td>
+                <td>{user.phoneNumber}</td>
+                {!isFrontDesk && !isPatient && (
+                  <td>
+                    <button className="edit-btn" onClick={() => navigateToUserProfile(user.userId)}>
+                      <i className="fas fa-edit"></i>
+                    </button>
+                    <button className="delete-btn" onClick={() => deleteUser(user.userId)}>
+                      <i className="fas fa-trash"></i>
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-};
+}
 
 export default UserList;

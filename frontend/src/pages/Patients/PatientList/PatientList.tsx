@@ -1,59 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './PatientList.css';
+import { GetAllPatients } from '../../../Service/Patient/Patient';
+// @ts-expect-error: module has no declaration file
+import { useSpinner } from "../../../Contexts/SpinnerContext";
+import type { PatientDetails } from '../../../Models/Patient';
+import { useNavigate } from 'react-router-dom';
+interface PatientListProps {
+  onClickEdit: () => void;
+}
+function PatientList({ onClickEdit }: PatientListProps) {
+  const [patients, setPatients] = useState<PatientDetails[]>([]);
+  const { showSpinner, hideSpinner } = useSpinner();
+  const  user = JSON.parse(localStorage.getItem('user') || ''); // Use the useAuth hook
+  const isFrontDesk = user?.roleName == 'Front Desk'; // Check if the user is Front Desk
+  const isPatient = user?.roleName == 'Patient'; // Check if the user is Patient
+  const navigate = useNavigate();
 
-const PatientList: React.FC = () => {
-  const patients = [
-    {
-      id: 1,
-      firstName: 'Alice',
-      lastName: 'Smith',
-      doj: '2023-01-15',
-      bloodGroup: 'A+',
-      allergies: 'Penicillin',
-      chronicDiseases: 'Asthma',
-      emergencyContactName: 'Bob Smith',
-      emergencyContactNumber: '123-456-7890',
-      insuranceProvider: 'Blue Cross',
-      insuranceNumber: 'INS-001',
-      medicalHistoryNotes: 'Patient has a history of seasonal allergies.',
-    },
-    {
-      id: 2,
-      firstName: 'Charlie',
-      lastName: 'Brown',
-      doj: '2022-11-01',
-      bloodGroup: 'O-',
-      allergies: 'None',
-      chronicDiseases: 'None',
-      emergencyContactName: 'Sally Brown',
-      emergencyContactNumber: '098-765-4321',
-      insuranceProvider: 'Aetna',
-      insuranceNumber: 'AET-002',
-      medicalHistoryNotes: 'Regular check-ups, no major issues.',
-    },
-  ];
+  useEffect(() => {
+    const fetchPatients = async () => {
+      showSpinner();
+      try {
+        const response = await GetAllPatients();
+        if (response) {
+          setPatients(response);
+        }
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+        hideSpinner();
+      } finally {
+        hideSpinner();
+      }
+    };
+
+    fetchPatients();
+  }, []);
+
+  const navigateToPatientProfile = (id: number) => {
+    onClickEdit();
+    navigate(`/patients?page=addPatient&action=edit&userId=${id}`);
+  };
 
   return (
     <div className="patient-list-container">
-      <div className="patient-list-actions">
-        <button><i className="fas fa-plus"></i> Add Patient</button>
-      </div>
-      <table className="app-table">
+      {/* <div className="patient-list-actions">
+        <button onClick={() => navigate}><i className="fas fa-plus"></i> Add Patient</button>
+      </div> */}
+      <div className="table-responsive">
+        <table className="app-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Patient Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>DOJ</th>
             <th>Blood Group</th>
-            <th>Allergies</th>
-            <th>Chronic Diseases</th>
-            <th>Emergency Contact Name</th>
-            <th>Emergency Contact Number</th>
-            <th>Insurance Provider</th>
-            <th>Insurance Number</th>
-            <th>Medical History Notes</th>
-            <th>Actions</th>
+            {(!isFrontDesk && !isPatient) && (<th>Actions</th>)}
           </tr>
         </thead>
         <tbody>
@@ -63,22 +64,16 @@ const PatientList: React.FC = () => {
               <td>{patient.firstName}</td>
               <td>{patient.lastName}</td>
               <td>{patient.doj}</td>
-              <td>{patient.bloodGroup}</td>
-              <td>{patient.allergies}</td>
-              <td>{patient.chronicDiseases}</td>
-              <td>{patient.emergencyContactName}</td>
-              <td>{patient.emergencyContactNumber}</td>
-              <td>{patient.insuranceProvider}</td>
-              <td>{patient.insuranceNumber}</td>
-              <td>{patient.medicalHistoryNotes}</td>
-              <td>
-                <button className="edit-btn"><i className="fas fa-edit"></i></button>
-                <button className="delete-btn"><i className="fas fa-trash"></i></button>
-              </td>
+              <td>{patient.bloodGroupName}</td>
+              {(!isFrontDesk && !isPatient) && (<td>
+                <button className="edit-btn" onClick={() => {navigateToPatientProfile(Number(patient.id))}}><i className="fas fa-edit"></i></button>
+                {/* <button className="delete-btn"><i className="fas fa-trash"></i></button> */}
+              </td>)}
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   );
 };

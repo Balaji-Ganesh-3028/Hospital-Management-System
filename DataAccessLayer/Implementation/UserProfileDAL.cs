@@ -1,9 +1,9 @@
-﻿using DataAccessLayer.Interface;
+﻿using Azure.Core;
+using DataAccessLayer.Interface;
 using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
-using System.Reflection;
 
 namespace DataAccessLayer.Implementation
 {
@@ -20,6 +20,7 @@ namespace DataAccessLayer.Implementation
 
         public async Task<string> UserProfileUpdate(UserProfile userProfile)
         {
+            var userId = 0;
             try
             {
                 using (SqlConnection connection = new SqlConnection(_dbConnectionString))
@@ -104,7 +105,7 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public async Task<object> GetAllUserDetails()
+        public async Task<object> GetAllUserDetails(string? searchTerm = "", string? userType = "All")
         {
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
@@ -112,6 +113,9 @@ namespace DataAccessLayer.Implementation
                 using (SqlCommand cmd = new SqlCommand("sp_get_all_user_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@searchTerm", searchTerm);
+                    cmd.Parameters.AddWithValue("@UserTypeFilter", userType);
 
                     var userList = new List<object>();
 
@@ -221,9 +225,9 @@ namespace DataAccessLayer.Implementation
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read() && reader["message"].ToString() == "Success")
+                            if (reader.Read() && reader["Message"].ToString() == "Success")
                             {
-                                return "User record deleted successfully";
+                                return "Success";
                             } else
                             {
                                 return "User record not deleted";

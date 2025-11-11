@@ -19,7 +19,7 @@ namespace backend.utilities
         public static string CreateToken(ClaimsItems claims)
         {
             List<Claim> userClaims = new List<Claim>();
-            userClaims.Add(new Claim("role", claims.roleId));
+            userClaims.Add(new Claim("role", claims.roleName));
             userClaims.Add(new Claim("email", claims.email));
             userClaims.Add(new Claim("userName", claims.userName));
 

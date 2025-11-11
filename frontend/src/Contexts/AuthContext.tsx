@@ -1,28 +1,28 @@
 
-import React, { createContext, useState, useContext, type ReactNode } from 'react';
-import type { LoginResponse } from '../Models/Auth';
+import React, { createContext, useState, type ReactNode } from 'react';
+import type { Details, LoginResponse } from '../Models/Auth';
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  user: LoginResponse | null;
+  user: Details | null;
   login: (userData: LoginResponse) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+// eslint-disable-next-line react-refresh/only-export-components
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem('token'));
-  const [user, setUser] = useState<LoginResponse | null>(() => {
+  const [user, setUser] = useState<Details | null>(() => {
     const storedUser = localStorage.getItem('user') || null;
-    console.log(storedUser);
     return storedUser !== null && storedUser !== undefined && storedUser !== 'undefined' && storedUser ? JSON.parse(storedUser) : null;
   });
 
   const login = (userData: LoginResponse) => {
     localStorage.setItem('user', JSON.stringify(userData?.data));
-    localStorage.setItem('token', userData?.token); // Replace with actual token
-    setUser(userData);
+    localStorage.setItem('token', userData?.token);
+    setUser(userData?.data);
     setIsAuthenticated(true);
   };
 
@@ -39,12 +39,4 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 };

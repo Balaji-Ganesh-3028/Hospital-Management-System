@@ -97,6 +97,8 @@ namespace DataAccessLayer.Implementation
                                 age = reader["age"],
                                 phoneNumber = reader["PhoneNumber"],
                                 bloodGroup = reader["BloodGroup"],
+                                bloodGroupName = reader["BloodGroupName"],
+                                patientId = reader["PatientId"],
                                 DOJ = reader["DOJ"],
                                 allergies = reader["Allergies"],
                                 chronicDiseases = reader["ChronicDiseases"],
@@ -114,7 +116,7 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public async Task<object?> GetPatientDetails(int patientId)
+        public async Task<object?> GetPatientDetails(int userId)
         {
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
@@ -126,7 +128,7 @@ namespace DataAccessLayer.Implementation
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Add parameter for userId
-                    cmd.Parameters.AddWithValue("@PatientId", patientId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
 
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {

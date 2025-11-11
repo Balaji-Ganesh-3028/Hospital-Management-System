@@ -54,6 +54,13 @@
   min-height: 80px;
 }
 
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  grid-column: 1 / -1; /* This makes the form-row span across both columns of the parent grid */
+}
+
 .submit-button {
   grid-column: 1 / -1;
   background-color: var(--primary-color);

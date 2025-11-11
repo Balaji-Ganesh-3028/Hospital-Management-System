@@ -12,9 +12,21 @@ BEGIN
   WHERE Email = @email AND PasswordHash = @password)
 
   BEGIN
-    SELECT Email, ud.Id, roleId, UserName, RoleName, 'Login successful' AS message
+    SELECT Email, ud.Id, roleId, UserName, RoleName, 'Login successful' AS message,
+      CASE
+      WHEN pd.id IS NOT NULL THEN 'Patient'
+      WHEN dd.id IS NOT NULL THEN 'Doctor'
+      ELSE 'User'
+    END AS UserType,
+      CASE
+      WHEN pd.id IS NOT NULL THEN pd.Id
+      WHEN dd.id IS NOT NULL THEN dd.ID
+      ELSE 0
+    END AS UserTypeId
     FROM UserDirectory AS ud
       INNER JOIN Roles ON ud.roleId = Roles.id
+      LEFT JOIN PatientDetails AS pd ON pd.UserId = ud.Id
+      LEFT JOIN DoctorDetails AS dd ON dd.UserId = ud.Id
     WHERE Email = @email AND PasswordHash = @password
   END
 
@@ -34,4 +46,4 @@ BEGIN
   END
 END;
 
-EXEC sp_login 'admin@gmail.com', 'Admin@123';
+EXEC sp_login 'balaji@gmail.com', 'Admin@123';

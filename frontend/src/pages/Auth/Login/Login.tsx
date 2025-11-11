@@ -6,7 +6,7 @@ import { ToastMessageTypes } from "../../../Enums/Toast-Message";
 import { useNavigate } from "react-router-dom";
 // @ts-expect-error: module has no declaration file
 import { useSpinner } from "../../../Contexts/SpinnerContext";
-import { useAuth } from "../../../Contexts/AuthContext";
+import { useAuth } from "../../../Contexts/useAuth";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -29,17 +29,24 @@ function Login() {
       password: password
     }
 
-    showSpinner();
-    const response = await loginService(payload);
-    console.log('Login response:', response);
-    if (response.txt == "Success") {
+    try {
+      showSpinner();
+      const response = await loginService(payload);
+      console.log('Login response:', response);
+      if (response.txt == "Success") {
       notify(response.message, ToastMessageTypes.SUCCESS)
       login(response);
       setTimeout(() => {
         hideSpinner();
         navigate("/dashboard")
-      }, 1000)
+      }, 600)
     }
+    } catch (error) {
+      console.error('Login error:', error);
+      notify('Something went wrong!!!', ToastMessageTypes.ERROR);
+      hideSpinner();
+    }
+    
         // ...submit to API / reset form / etc...
   }
 

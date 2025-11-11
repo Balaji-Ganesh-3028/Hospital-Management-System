@@ -22,4 +22,6 @@ export interface Details {
   userName: string;
   roleId: string;
   roleName: string;
+  userType: string;
+  userTypeId: number;
 }

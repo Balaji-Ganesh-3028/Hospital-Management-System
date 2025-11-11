@@ -7,64 +7,71 @@ BEGIN
   SET NOCOUNT ON;
 
   DECLARE @UserType VARCHAR(100);
-  DECLARE @PatientId INT;
-  DECLARE @DoctorId INT;
+  DECLARE @PatientId INT = NULL;
+  DECLARE @DoctorId INT = NULL;
 
-  BEGIN TRANSACTION;
+  BEGIN TRY
+    BEGIN TRANSACTION;
 
-  SELECT @UserType = Roles.RoleName, @PatientId = pd.id, @DoctorId = dd.id
-  FROM UserDirectory AS ud
-    INNER JOIN Roles ON ud.RoleId = Roles.Id
-    INNER JOIN PatientDetails AS pd ON pd.UserId = ud.Id
-    INNER JOIN DoctorDetails AS dd ON dd.UserId = ud.Id
-  WHERE ud.id = @UserId;
-
-  -- Check if user exists
-  IF @UserType IS NULL
-  BEGIN
-    ROLLBACK TRANSACTION;
+    -- Get the user type (Doctor / Patient / Other)
     SELECT
-      'User not found' AS Message;
+    @UserType = R.RoleName
+  FROM UserDirectory AS ud
+    INNER JOIN Roles AS R ON ud.RoleId = R.Id
+  WHERE ud.Id = @UserId;
+
+    -- If no user found
+    IF @UserType IS NULL
+    BEGIN
+    ROLLBACK TRANSACTION;
+    SELECT 'User not found' AS Message;
     RETURN;
   END;
 
-
-  -- Delete from the Appointment table
-  DELETE FROM AppointmentDirectory
-  WHERE PatientID = @PatientId AND DoctorID = @DoctorId;
-
-  -- Delete from Patient table if user is a patient
-  IF @UserType = 'Patient'
-    BEGIN
-    DELETE FROM PatientDetails 
-      WHERE UserId = @UserId;
-  END;
-
-  -- Delete from Doctor table if user is a doctor
-  IF @UserType = 'Doctor'
-    BEGIN
-    DELETE FROM DoctorDetails 
-      WHERE UserId = @UserId;
-  END;
-
-  -- Delete from UserContactDetails table
-  DELETE FROM UserContactDetails 
+    -- Get IDs from respective tables if exist
+    SELECT @PatientId = Id
+  FROM PatientDetails
+  WHERE UserId = @UserId;
+    SELECT @DoctorId  = Id
+  FROM DoctorDetails
   WHERE UserId = @UserId;
 
-  -- Delete from UserProfile table
-  DELETE FROM UserProfile 
-  WHERE UserId = @UserId;
+    -- Delete related appointments
+    IF @UserType = 'Patient'
+    BEGIN
+    DELETE FROM AppointmentDirectory WHERE PatientID = @PatientId;
+    DELETE FROM PatientDetails WHERE UserId = @UserId;
+  END;
 
-  -- Delete from UserDirectory table
-  DELETE FROM UserDirectory
-  WHERE id = @UserId;
+    IF @UserType = 'Doctor'
+    BEGIN
+    DELETE FROM AppointmentDirectory WHERE DoctorID = @DoctorId;
+    DELETE FROM DoctorDetails WHERE UserId = @UserId;
+  END;
 
-  SELECT
+    -- Delete from contact and profile
+    DELETE FROM UserContactDetails WHERE UserId = @UserId;
+    DELETE FROM UserProfile WHERE UserId = @UserId;
+
+    -- Finally delete the user
+    DELETE FROM UserDirectory WHERE Id = @UserId;
+
+    COMMIT TRANSACTION;
+
+    SELECT
     'Success' AS Message,
     @UserId AS DeletedUserId,
     @UserType AS UserType;
+  END TRY
 
-  COMMIT TRANSACTION;
+  BEGIN CATCH
+    ROLLBACK TRANSACTION;
+
+    SELECT
+    'Error' AS Message,
+    ERROR_MESSAGE() AS ErrorMessage;
+  END CATCH;
 END;
 
-EXEC sp_delete_user_details @UserId = 2
+
+EXECUTE sp_delete_user_details @UserId = 9

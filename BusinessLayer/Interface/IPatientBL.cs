@@ -7,7 +7,7 @@ namespace BusinessLayer.Interface
         public Task<string> InsertPatientDetails(PatientDetails patientDetails);
         public Task<string> UpdatePatientDetails(PatientDetails patientDetails);
         public Task<object> GetAllPatientDetails();
-        public Task<object> GetPatientDetails(int patientId);
+        public Task<object> GetPatientDetails(int userId);
 
     }
 }

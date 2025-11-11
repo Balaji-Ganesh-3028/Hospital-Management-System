@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE sp_get_patient_details(
-  @PatientId INT
+  @UserId INT
 )
 AS
 BEGIN
@@ -24,7 +24,7 @@ BEGIN
     ucd.City,
     ucd.Country,
     ucd.Pincode,
-    pd.Id,
+    pd.Id AS PatientId,
     pd.UserId,
     pd.BloodGroup,
     pd.DOJ,
@@ -35,12 +35,12 @@ BEGIN
     pd.InsuranceProvider,
     pd.InsuranceNumber,
     pd.MedicalHistoryNotes
-  FROM PatientDetails AS pd
-    INNER JOIN UserDirectory AS ud ON ud.Id = pd.UserId
-    INNER JOIN UserProfile AS up ON up.UserId = pd.UserId
-    INNER JOIN UserContactDetails AS ucd ON ucd.UserId = pd.UserId
-  WHERE pd.Id = @PatientId;
+  FROM UserDirectory AS ud
+    INNER JOIN PatientDetails AS pd ON pd.UserId = ud.Id
+    INNER JOIN UserProfile AS up ON up.UserId = ud.Id
+    INNER JOIN UserContactDetails AS ucd ON ucd.UserId = ud.Id
+  WHERE ud.Id = @UserId;
 END;
 
 EXEC sp_get_patient_details
-  @PatientId = 2001;
+  @UserId = 7;

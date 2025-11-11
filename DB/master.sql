@@ -82,6 +82,7 @@ CREATE TABLE PatientDetails
   EmergencyContactNumber VARCHAR(15),
   InsuranceProvider VARCHAR(255),
   InsuranceNumber VARCHAR(150),
+  MedicalHistoryNotes NVARCHAR(255),
   CreatedAt DATETIME DEFAULT GETDATE(),
   UpdatedAt DATETIME DEFAULT GETDATE(),
   CreatedBy NVARCHAR(255) NOT NULL DEFAULT 'SYSTEM',
@@ -129,6 +130,15 @@ CREATE TABLE AppointmentDirectory
   UpdatedBy NVARCHAR(255) NOT NULL DEFAULT 'SYSTEM'
 );
 
+ALTER TABLE AppointmentDirectory
+ALTER COLUMN AppointmentDate DATE NOT NULL;
+
+EXEC sp_help 'AppointmentDirectory';
+
+--HOW TO GET THE TABLE DETAILS IN DATATYPE
+SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'AppointmentDirectory';
 
 -- Master Data Table
 -- Stores master data for various categories
@@ -307,6 +317,15 @@ SELECT *
 FROM MasterData
 WHERE Category = 'gender';
 
+SELECT *
+FROM MasterData
+WHERE Category = 'blood_group';
+
+
+SELECT *
+FROM MasterData
+WHERE Category = 'blood_group';
+
 
 -- DROP TABLES
 DROP TABLE UserDirectory
@@ -322,3 +341,8 @@ TRUNCATE TABLE PatientDetails;
 
 
 DELETE FROM PatientDetails;
+
+UPDATE UserDirectory 
+SET
+  RoleId = 1007
+WHERE id = 2;

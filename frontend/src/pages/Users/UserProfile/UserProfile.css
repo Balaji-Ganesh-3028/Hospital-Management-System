@@ -1,17 +1,16 @@
 .user-profile-container {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .profile-sections {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin-top: 2rem;
 }
 
 .profile-section {
   background-color: var(--white-color);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: .25rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
@@ -49,7 +48,20 @@
 
 .profile-actions {
   margin-top: 2rem;
-  text-align: right;
+}
+
+.submit-button {
+  grid-column: 1 / -1;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .profile-actions button {

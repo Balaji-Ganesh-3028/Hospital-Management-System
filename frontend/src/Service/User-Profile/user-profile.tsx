@@ -1,4 +1,3 @@
-import type { Lookup } from "../../Models/Lookups";
 import type { AllUserDetails, UserProfile, UserProfileFormData } from "../../Models/User-Profile";
 import API from "../API/api";
 
@@ -8,26 +7,23 @@ import API from "../API/api";
  * @returns A promise that resolves to a string containing the result of the operation
  */
 export const InsertUserProfile = async (data: UserProfile): Promise<string> =>{
-  const response = await API.post<string>("api/User/profile", data)
+  const response = await API.post<string>("api/User/profile", data, { headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`} })
   return response?.data
 }
 
-/**
- * Retrieves a list of gender lookup values from the database.
- * @returns A promise that resolves to an array of Lookup objects containing the gender lookup values.
- */
-export const GetGender = async (): Promise<Lookup[]> => {
-  const response = await API.get<Lookup[]>("api/Lookups/gender");
-  return response.data
+export const UpdateUserProfile = async (data: UserProfile): Promise<string> => {
+  console.log(localStorage.getItem("token"));
+  const response = await API.put<string>("api/User/profile", data, { headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`} })
+  return response?.data
 }
 
-export const GetAllUserProfile = async (): Promise<AllUserDetails[]> => {
-  const response = await API.get<AllUserDetails[]>("api/User/get-all-users");
+export const GetAllUserProfile = async (searchTerm: string, userType: string): Promise<AllUserDetails[]> => {
+  const response = await API.get<AllUserDetails[]>(`api/User/get-all-users?searchTerm=${searchTerm}&userType=${userType}`, { headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`} });
   return response.data
 }
 
 export const GetUserProfile = async (userId: number): Promise<UserProfileFormData> => {
-  const response = await API.get<UserProfileFormData>(`api/User/get-user?userId=${userId}`);
+  const response = await API.get<UserProfileFormData>(`api/User/get-user?userId=${userId}`, { headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`} });
   return response.data
 }
 

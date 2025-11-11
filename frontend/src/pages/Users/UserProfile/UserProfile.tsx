@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './UserProfile.css';
 import { UserProfilePayload } from '../Helpers/User-Profile-Payload';
 import type { UserProfileFormData } from '../../../Models/User-Profile';
-import { GetGender, GetUserProfile, InsertUserProfile } from '../../../Service/User-Profile/user-profile';
+import { GetUserProfile, InsertUserProfile, UpdateUserProfile } from '../../../Service/User-Profile/user-profile';
 import type { Lookup } from '../../../Models/Lookups';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
 // @ts-expect-error: module has no declaration file
 import { useSpinner } from "../../../Contexts/SpinnerContext";
+import { GetGender } from '../../../Service/Lookups/Lookups';
 import { useSearchParams } from 'react-router-dom';
 
 const UserProfile: React.FC = () => {
@@ -16,7 +17,15 @@ const UserProfile: React.FC = () => {
   const { showSpinner, hideSpinner } = useSpinner();
   const [searchParams] = useSearchParams();
 
-  const userId =searchParams.get('userId');
+  const user = JSON.parse(localStorage.getItem('user') || ''); // Use the useAuth hook
+  const isFrontDesk = user?.roleName == 'Front Desk'; // Check if the user is Front Desk
+  const isPatient = user?.roleName == 'Patient'; // Check if the user is Patient
+  const isDoctor = user?.roleName == 'Doctor'; // Check if the user is Doctor
+  const isAdmin = user?.roleName == 'Admin' || 'Super Admin'; // Check if the user is Admin & Super Admin
+
+  const [userId, setUserId] = useState<number>(0);
+
+  // setUserId(parseInt(searchParams.get('userId') || '0'));
 
   const [formData, setFormData] = useState<UserProfileFormData>({
     firstName: '',
@@ -45,29 +54,63 @@ const UserProfile: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
-    
-    showSpinner();
-    const payload = UserProfilePayload(formData)
-    const response = await InsertUserProfile(payload);
-    if (response == "User details added successfully") notify(response, ToastMessageTypes.SUCCESS);
-    else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR)
+    try {
+      showSpinner();
+      const payload = UserProfilePayload(formData);
 
+      // INSERT USER PROFILE
+      if (!userId) {
+        const response = await InsertUserProfile(payload);
+        if (response == "User details added successfully") {
+          notify(response, ToastMessageTypes.SUCCESS);
+          // if (isFrontDesk) navigate('/users?page=userList');
+        }
+        else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR);
+        return;
+      }
+      
+      // UPDATE USER PROFILE
+      // debugger;
+      const updateResponse = await UpdateUserProfile(payload);
+      // debugger;
+      if (updateResponse == "User details updated successfully") {
+        notify(updateResponse, ToastMessageTypes.SUCCESS);
+      }
+      else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR)
+      
+    } catch (error) {
+      console.error('Error inserting user profile:', error);
+      notify("Something went wrong!!!", ToastMessageTypes.ERROR);
+      hideSpinner();
+    }
+    
     setTimeout(() => {
       hideSpinner();
     }, 800)
   };
 
   useEffect(() => {
-    loadLookupData();
+    loadLookupData(); // TO LOAD LOOKUP DATA
+    console.log(searchParams.get('userId'), 'userId');
+    if (searchParams.get('userId') && (isFrontDesk || isAdmin)) {
+      console.log(searchParams.get('userId'));
+      setUserId(parseInt(searchParams.get('userId') || '0'));
+      
+      loadUserDetails(Number(searchParams.get('userId') || '0'));
+    }
+    
+
+    // IF PATIENT IS LOGIN THE NEED TO SHOW THE PATIENT DETAILS AND DOCTOR DETAILS
+    if (isPatient || isDoctor) {
+      const data = JSON.parse(localStorage.getItem('user') || '');
+      if (data) setUserId(data?.userId);
+      loadUserDetails(data?.userId);
+    }
+    
   }, []);
 
-  const loadLookupData = async () => {
-    showSpinner();
-    const gender = await GetGender();
-    setGender(gender);
-
-    if (userId) {
-      const response = await GetUserProfile(Number(userId));
+  const loadUserDetails = async (userId: number) => {
+    const response = await GetUserProfile(Number(userId));
       console.log(response);
       setFormData({
         firstName: response.firstName,
@@ -84,7 +127,12 @@ const UserProfile: React.FC = () => {
         state: response.state,
         pincode: response.pincode
       })
-    }
+  }
+
+  const loadLookupData = async () => {
+    showSpinner();
+    const gender = await GetGender();
+    setGender(gender);
     setTimeout(() => {
       hideSpinner();
     }, 600)
@@ -92,7 +140,6 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className="user-profile-container">
-      <h1>User Profile</h1>
       <form onSubmit={handleSubmit}>
         <div className="profile-sections">
           <div className="profile-section">
@@ -163,11 +210,14 @@ const UserProfile: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="profile-actions">
-          <button type="submit">Save Changes</button>
-        </div>
+        {/* <div className="profile-actions"> */}
+          {/* <button type="submit">Save Changes</button> */}
+          <button type="submit" className="submit-button">Submit</button>
+        {/* </div> */}
       </form>
+    {/* <AddPatient/> */}
     </div>
+
   );
 };
 

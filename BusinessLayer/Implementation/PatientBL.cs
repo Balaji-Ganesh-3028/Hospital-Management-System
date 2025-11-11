@@ -28,9 +28,9 @@ namespace BusinessLayer.Implementation
             return await _patientDAL.GetAllPatientDetails();
         }
 
-        public async Task<object> GetPatientDetails(int patientId)
+        public async Task<object> GetPatientDetails(int userId)
         {
-            return await _patientDAL.GetPatientDetails(patientId);
+            return await _patientDAL.GetPatientDetails(userId);
         }
     }
 }

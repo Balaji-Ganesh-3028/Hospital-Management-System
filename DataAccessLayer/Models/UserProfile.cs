@@ -1,4 +1,6 @@
-﻿namespace DataAccessLayer.Models
+﻿using DataAccessLayer.models;
+
+namespace DataAccessLayer.Models
 {
     public class UserProfile
     {

@@ -1,6 +1,6 @@
 CREATE OR ALTER PROCEDURE sp_update_patient_appointment_details(
   @id INT,
-  @appointmentDate DATETIME,
+  @appointmentDate DATE,
   @patientID INT,
   @doctorID INT,
   @purposeOfVisit INT,
@@ -14,7 +14,7 @@ CREATE OR ALTER PROCEDURE sp_update_patient_appointment_details(
 AS
 BEGIN
 
-  SET NOCOUNT ON;
+  -- SET NOCOUNT ON;
 
   IF @UpdatedAt IS NULL 
   SET @UpdatedAt = GETDATE();

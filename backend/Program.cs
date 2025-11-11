@@ -1,3 +1,4 @@
+using backend.Middleware;
 using BusinessLayer.Implementation;
 using BusinessLayer.Interface;
 using DataAccessLayer.Implementation;
@@ -29,11 +30,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddCors(Options =>
 {
-    Options.AddPolicy("Cros-Policy", builder =>
+    Options.AddPolicy("Cors-Policy", builder =>
     {
         builder.WithOrigins(
-            "http://localhost:3000",
-            "http://192.168.1.6:3000"
+            "http://localhost:5173",
+            "http://192.168.1.6:5173",
+            "*"
         ).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
@@ -48,6 +50,10 @@ builder.Services.AddScoped<IUserProfileBL, UserProfileBL>();
 builder.Services.AddScoped<IUserProfileDAL, UserProfileDAL>();
 builder.Services.AddScoped<IPatientBL, PatientBL>();
 builder.Services.AddScoped<IPatientDAL, PatientDAL>();
+builder.Services.AddScoped<IDoctorBL, DoctorBL>();
+builder.Services.AddScoped<IDoctorDAL, DoctorDAL>();
+builder.Services.AddScoped<IAppointmentBL, AppointmentBL>();
+builder.Services.AddScoped<IAppointmentDAL, AppointmentDAL>();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
@@ -67,9 +73,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("Cros-Policy");
+app.UseCors("Cors-Policy");
+
+app.UseAuthentication();
+
+app.UseMiddleware<JwtValidation>();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandler>();
 
 app.MapControllers();
 

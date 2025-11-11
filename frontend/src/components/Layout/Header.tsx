@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import './Header.css';
-import { useAuth } from '../../Contexts/AuthContext';
+import { useAuth } from '../../Contexts/useAuth';
 
 const Header: React.FC = () => {
   const { user, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const getInitials = (name: string) => {
-    console.log(name);
     if (!name) return '';
     const nameParts = name.split(' ');
     if (nameParts.length > 1) {
@@ -22,12 +21,12 @@ const Header: React.FC = () => {
       </div>
       <div className="header-profile">
         <div className="profile-icon" onClick={() => setDropdownOpen(!dropdownOpen)}>
-          {user ? getInitials(user.data?.userName) : ''}
+          {user ? getInitials(user?.userName) : ''}
         </div>
         {dropdownOpen && (
           <div className="profile-dropdown">
-            <div className="dropdown-item">{user?.data?.userName}</div>
-            <div className="dropdown-item">{user?.data?.roleName}</div>
+            <div className="dropdown-item">{user?.userName}</div>
+            <div className="dropdown-item">{user?.roleName}</div>
             <div className="dropdown-item" onClick={logout}>
               Logout
             </div>

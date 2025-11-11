@@ -31,11 +31,11 @@ BEGIN
     dd.Designation,
     dd.ExperienceYears
   FROM UserDirectory AS ud
-    INNER JOIN UserProfile AS up ON ud.Id = up.UserId
-    INNER JOIN UserContactDetails AS ucd ON ud.Id = ucd.UserId
-    INNER JOIN DoctorDetails AS dd ON ud.Id = dd.UserId
+    INNER JOIN DoctorDetails AS dd ON dd.UserId = ud.Id
+    INNER JOIN UserProfile AS up ON up.userId = ud.Id
+    INNER JOIN UserContactDetails AS ucd ON ucd.userId = ud.Id
   WHERE ud.Id = @UserId;
 END;
 
 EXEC sp_get_doctor_details
-  @UserId = 2;
+  @UserId = 8;

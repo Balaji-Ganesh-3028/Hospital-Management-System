@@ -2,11 +2,13 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using backend.CustomAttributes;
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[CustomAuth("Admin")]
     public class UserController : ControllerBase
     {
         private readonly IUserProfileBL _userProfileBL;
@@ -21,7 +23,28 @@ namespace backend.Controllers
         }
 
         [HttpPost("profile")]
+        [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
         public async Task<IActionResult> UserProfile([FromBody] UserProfile userProfile)
+        {
+            // IF USER PROFILE IS EMPTY
+            if (userProfile == null)
+            {
+                return BadRequest("User details should contain value");
+            }
+
+            var result = await _userProfileBL.UserProfile(userProfile);
+            Console.WriteLine("User Profile Error: " + result);
+            if (result != "Success")
+            {
+                return StatusCode(500, "An error occurred while updating the user profile.");
+            }
+
+            return Ok("User details added successfully");
+        }
+
+        [HttpPut("profile")]
+        [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfile userProfile)
         {
             // IF USER PROFILE IS EMPTY
             if (userProfile == null)
@@ -36,13 +59,13 @@ namespace backend.Controllers
                 return StatusCode(500, "An error occurred while updating the user profile.");
             }
 
-            return Ok("User details added successfully");
+            return Ok("User details updated successfully");
         }
 
         [HttpGet("get-all-users")]
-        public async Task<IActionResult> GetAllUserDetails()
+        public async Task<IActionResult> GetAllUserDetails([FromQuery] string? searchTerm, string? userType)
         {
-            var result = await _userProfileBL.GetAllUserDetails();
+            var result = await _userProfileBL.GetAllUserDetails(searchTerm, userType);
             return Ok(result);
         }
 
@@ -66,7 +89,14 @@ namespace backend.Controllers
             }
 
             var result = await _userProfileBL.DeleteUserProfile(userId);
-            return Ok(result);
+
+            if (result == "Success")
+            {
+               return Ok(result);
+            } else
+            {
+                return BadRequest("Something went wrong!!!");
+            }
         }
 
     }

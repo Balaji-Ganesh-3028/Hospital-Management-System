@@ -27,7 +27,7 @@ namespace backend.Controllers
 
             if (result == "Success")
             {
-                return Ok("Success");
+                return Ok("Patient details added successfully");
             } else
             {
                 return BadRequest("Something went wrong!!!");
@@ -48,7 +48,7 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("get-all-patient")]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAllPatient()
         {
             var result = await _patientBL.GetAllPatientDetails();
@@ -56,9 +56,9 @@ namespace backend.Controllers
         }
 
         [HttpGet("get-patient")]
-        public async Task<IActionResult> GetPatientDetails([FromQuery] int patientId)
+        public async Task<IActionResult> GetPatientDetails([FromQuery] int userId)
         {
-            var result = await _patientBL.GetPatientDetails(patientId);
+            var result = await _patientBL.GetPatientDetails(userId);
             return Ok(result);
         }
 

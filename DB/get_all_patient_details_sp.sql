@@ -15,6 +15,8 @@ BEGIN
     up.UpdatedBy,
     ucd.PhoneNumber,
     pd.BloodGroup,
+    mdb.Name AS BloodGroupName,
+    pd.id AS PatientId,
     pd.DOJ,
     pd.Allergies,
     pd.ChronicDiseases,
@@ -23,10 +25,11 @@ BEGIN
     pd.InsuranceProvider,
     pd.InsuranceNumber,
     pd.MedicalHistoryNotes
-  FROM UserDirectory AS ud
-    INNER JOIN UserProfile AS up ON ud.Id = up.UserId
-    INNER JOIN UserContactDetails AS ucd ON ud.Id = ucd.UserId
-    INNER JOIN PatientDetails AS pd ON ud.Id = pd.UserId
+  FROM PatientDetails AS pd
+    INNER JOIN UserDirectory AS ud ON ud.Id = pd.UserId
+    INNER JOIN UserProfile AS up ON up.UserId = pd.UserId
+    INNER JOIN UserContactDetails AS ucd ON ucd.UserId = pd.UserId
+    INNER JOIN MasterData AS mdb ON mdb.Id = pd.BloodGroup
 END;
 
 EXEC sp_get_all_patient_details;

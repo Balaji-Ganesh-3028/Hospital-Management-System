@@ -7,5 +7,7 @@
         public string roleId { get; set; }
         public string roleName { get; set; }
         public int userId { get; set; }
+        public string UserType { get; set; }
+        public int UserTypeId { get; set; }
     }
 }

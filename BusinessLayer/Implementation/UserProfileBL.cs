@@ -17,9 +17,15 @@ namespace BusinessLayer.Implementation
             return await _userProfileDal.UserProfileUpdate(userProfile);
         }
 
-        public async Task<object> GetAllUserDetails()
+        public async Task<string> UserProfile(UserProfile userProfile)
         {
-            return await _userProfileDal.GetAllUserDetails();
+            return await _userProfileDal.UserProfileUpdate(userProfile);
+        }
+
+
+        public async Task<object> GetAllUserDetails(string? searchTerm, string? userType)
+        {
+            return await _userProfileDal.GetAllUserDetails(searchTerm, userType);
         }
 
         public async Task<object> GetUserDetails(int userId)
