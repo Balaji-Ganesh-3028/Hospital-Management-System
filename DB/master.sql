@@ -344,5 +344,10 @@ DELETE FROM PatientDetails;
 
 UPDATE UserDirectory 
 SET
-  RoleId = 1007
-WHERE id = 2;
+  PasswordHash = 'Admin@123'
+WHERE id = 13;
+
+UPDATE UserDirectory 
+SET
+  Username = 'anjali_rao'
+WHERE id = 14;

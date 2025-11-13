@@ -15,21 +15,21 @@ namespace backend.Controllers
             _doctorBL = doctorBL;
         }
 
-        [HttpGet("all-doctors")]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllDoctor()
         {
             var result = await _doctorBL.GetAllDoctorDetails();
             return Ok(result);
         }
 
-        [HttpGet("doctor")]
-        public async Task<IActionResult> GetDoctor([FromQuery] int userId)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetDoctor(int userId)
         {
             var result = await _doctorBL.GetDoctorDetails(userId);
             return Ok(result);
         }
 
-        [HttpPost("insert")]
+        [HttpPost("")]
         public async Task<IActionResult> InsertDoctorDetail(DoctorDetails doctorDetails)
         {
             if (doctorDetails == null)
@@ -40,6 +40,20 @@ namespace backend.Controllers
             var result = await _doctorBL.InsertDoctorDetails(doctorDetails);
 
             if (result == "Success") return Ok("Details added successfully");
+            else return BadRequest("Something went wrong!!!");
+        }
+
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateDoctorDetail(DoctorDetails doctorDetails)
+        {
+            if (doctorDetails == null)
+            {
+                return BadRequest("Doctor details required");
+            }
+
+            var result = await _doctorBL.UpdateDoctorDetails(doctorDetails);
+
+            if (result == "Success") return Ok("Details updated successfully");
             else return BadRequest("Something went wrong!!!");
         }
 

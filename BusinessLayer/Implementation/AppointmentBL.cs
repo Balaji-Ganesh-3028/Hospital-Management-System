@@ -30,5 +30,10 @@ namespace BusinessLayer.Implementation
         {
             return await _appointment.InsertUpdateAppointmrnt(appointment);
         }
+
+        public async Task<string> UpdateAppointment(Appointment appointment)
+        {
+            return await _appointment.InsertUpdateAppointmrnt(appointment);
+        }
     }
 }

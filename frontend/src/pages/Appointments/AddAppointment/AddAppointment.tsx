@@ -4,7 +4,7 @@ import { GetAllDoctors } from '../../../Service/Doctor/Doctor';
 import { GetAllPatients } from '../../../Service/Patient/Patient';
 import type { DoctorDetails } from '../../../Models/Doctor';
 import type { PatientDetails } from '../../../Models/Patient';
-import { GetAppointmentDetails, InsertAppointment } from '../../../Service/Appointment/Appointment';
+import { GetAppointmentDetails, InsertAppointment, UpdateAppointment } from '../../../Service/Appointment/Appointment';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import type { Lookup } from '../../../Models/Lookups';
@@ -116,6 +116,23 @@ function AddAppointment({ onAddAppointment }: AddAppointmentProps) {
       proceduresOrMedication: formData.procedureMedications,
       currentStatus: Number(formData.currentStatus),
     };
+
+    if (appointmentId) {
+      try {
+        const response = await UpdateAppointment(payload);
+        if (response) {
+          notify(response.data, ToastMessageTypes.SUCCESS);
+          onAddAppointment();
+          setTimeout(() => {
+            hideSpinner();
+          }, 500)
+        } 
+      } catch (error) {
+        console.error('Error inserting patient:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR)
+      }
+      return;
+    }
 
     const response = await InsertAppointment(payload)
 

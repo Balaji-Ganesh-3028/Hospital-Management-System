@@ -16,28 +16,43 @@ namespace backend.Controllers
             _appointmentBL = appointmentBL;
         }
 
-        [HttpPost("insert")]
+        [HttpPost("")]
         public async Task<IActionResult> InsertAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.InsertAppointment(appointment);
             if(result == "Success")
             {
                 return Ok("Doctor Apponitment fixed");
-            } else
+            }
+            else
             {
                 return BadRequest("Something went worng!!!");
             }
         }
 
-        [HttpGet("all-appointments")]
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateAppointment(Appointment appointment)
+        {
+            var result = await _appointmentBL.UpdateAppointment(appointment);
+            if (result == "Success")
+            {
+                return Ok("Doctor Apponitment updated");
+            }
+            else
+            {
+                return BadRequest("Something went worng!!!");
+            }
+        }
+
+        [HttpGet("")]
         public async Task<IActionResult> GetAllAppointments()
         {
             var result = await _appointmentBL.GetAllAppointmentDetails();
             return Ok(result);
         }
 
-        [HttpGet("get-appointment")]
-        public async Task<IActionResult> GetAppointment([FromQuery] int appointmentId)
+        [HttpGet("{appointmentId}")]
+        public async Task<IActionResult> GetAppointment(int appointmentId)
         {
             var result = await _appointmentBL.GetAppointmentDetail(appointmentId);
             return Ok(result);

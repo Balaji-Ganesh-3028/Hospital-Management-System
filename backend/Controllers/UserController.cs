@@ -8,7 +8,6 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[CustomAuth("Admin")]
     public class UserController : ControllerBase
     {
         private readonly IUserProfileBL _userProfileBL;
@@ -16,13 +15,8 @@ namespace backend.Controllers
         {
             _userProfileBL = userProfileBL;
         }
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok("UserController is working!");
-        }
 
-        [HttpPost("profile")]
+        [HttpPost("")]
         [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
         public async Task<IActionResult> UserProfile([FromBody] UserProfile userProfile)
         {
@@ -42,7 +36,7 @@ namespace backend.Controllers
             return Ok("User details added successfully");
         }
 
-        [HttpPut("profile")]
+        [HttpPut("")]
         [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
         public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfile userProfile)
         {
@@ -62,15 +56,17 @@ namespace backend.Controllers
             return Ok("User details updated successfully");
         }
 
-        [HttpGet("get-all-users")]
-        public async Task<IActionResult> GetAllUserDetails([FromQuery] string? searchTerm, string? userType)
+        [HttpGet("")]
+        [CustomAuth("Front Desk", "Doctor", "Admin")]
+        public async Task<IActionResult> GetAllUserDetails([FromQuery] UserDetailsQuery query)
         {
-            var result = await _userProfileBL.GetAllUserDetails(searchTerm, userType);
+            var result = await _userProfileBL.GetAllUserDetails(query);
             return Ok(result);
         }
 
-        [HttpGet("get-user")]
-        public async Task<IActionResult> GetUserProfileDetail([FromQuery] int userId)
+        [HttpGet("{userId}")]
+        [CustomAuth("Patient", "Doctor", "Admin", "Front Desk")]
+        public async Task<IActionResult> GetUserProfileDetail(int userId)
         {
             if(userId == 0)
             {
@@ -80,8 +76,8 @@ namespace backend.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("delete-user")]
-        public async Task<IActionResult> DeleteUserProfile([FromQuery] int userId)
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserProfile(int userId)
         {
             if(userId == 0)
             {

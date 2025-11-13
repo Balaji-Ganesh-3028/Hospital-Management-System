@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './AddPatient.css';
 import { GetBloodGroup } from '../../../Service/Lookups/Lookups';
 import type { Lookup } from '../../../Models/Lookups';
-import { setAdaptor } from '../Helpers/set-adaptor';
-import { GetPatient, InsertPatient } from '../../../Service/Patient/Patient';
+import { setAdaptor, toGetUserId } from '../Helpers/set-adaptor';
+import { GetPatient, InsertPatient, UpdatePatient } from '../../../Service/Patient/Patient';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
 // @ts-expect-error: module has no declaration file
@@ -50,9 +50,23 @@ const AddPatient: React.FC = () => {
     e.preventDefault();
     console.log('Patient Data:', formData);
     // Here you would typically send the data to your backend
-    const payload = setAdaptor(formData);
 
+    if (searchParams.get('userId')) {
+      const payload = await setAdaptor(formData, Number(searchParams.get('userId')));
+      try {
+        const response = await UpdatePatient(payload);
+        if (response) {
+          notify(response, ToastMessageTypes.SUCCESS);
+        }
+      } catch (error) {
+        console.error('Error inserting patient:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR)
+      }
+      return;
+    }
+    
     try {
+      const payload = setAdaptor(formData, toGetUserId());
       const response = await InsertPatient(payload);
       if (response) {
         notify(response, ToastMessageTypes.SUCCESS);

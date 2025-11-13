@@ -6,6 +6,7 @@ BEGIN
   SELECT
     ad.ID AS AppointmentId,
     ad.AppointmentDate,
+    mdpv.Name AS PurposeOfVisitName,
     ad.PurposeOfVisit,
     ad.IllnessOrDisease,
     ad.ProceduresOrMedication,
@@ -37,6 +38,7 @@ BEGIN
 
     -- MASTER DATA VALUE
     INNER JOIN MasterData AS mdst ON mdst.Id = ad.CurrentStatus
+    INNER JOIN MasterData AS mdpv ON mdpv.Id = ad.PurposeOfVisit
   -- assuming DoctorDetails has UserId FK
   ORDER BY ad.AppointmentDate ASC;
 END;

@@ -52,7 +52,7 @@ function PatientList({ onClickEdit }: PatientListProps) {
             <th>Patient Id</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>DOJ</th>
+            <th>Phone No.</th>
             <th>Blood Group</th>
             {(!isFrontDesk && !isPatient) && (<th>Actions</th>)}
           </tr>
@@ -63,7 +63,7 @@ function PatientList({ onClickEdit }: PatientListProps) {
               <td>{patient.id}</td>
               <td>{patient.firstName}</td>
               <td>{patient.lastName}</td>
-              <td>{patient.doj}</td>
+              <td>{patient.phoneNumber}</td>
               <td>{patient.bloodGroupName}</td>
               {(!isFrontDesk && !isPatient) && (<td>
                 <button className="edit-btn" onClick={() => {navigateToPatientProfile(Number(patient.id))}}><i className="fas fa-edit"></i></button>

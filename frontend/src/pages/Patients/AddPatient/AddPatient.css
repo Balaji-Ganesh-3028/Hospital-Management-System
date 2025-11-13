@@ -44,6 +44,11 @@
   box-sizing: border-box; /* Ensure padding doesn't increase width */
 }
 
+ .form-group select {
+  max-height: 200px; /* Adjust the maximum height as needed */
+  overflow-y: 'auto';
+ }
+
 .form-group input[type="date"]:disabled {
   background-color: #e9ecef;
   cursor: not-allowed;

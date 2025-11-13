@@ -65,6 +65,7 @@ function AppointmentList({ onAddAppointment }: AddAppointmentProps) {
               <th>ID</th>
               <th>Appointment Date</th>
               <th>Doctor Name</th>
+              <th>Patient Name</th>
               <th>Purpose of Visit</th>
               <th>Illness/Diseases</th>
               <th>Procedure/Medications</th>
@@ -78,12 +79,13 @@ function AppointmentList({ onAddAppointment }: AddAppointmentProps) {
                 <td>{appointment.appointmentId}</td>
                 <td>{appointment.appointmentDate}</td>
                 <td>{appointment.doctorFirstName}</td>
-                <td>{appointment.purposeOfVisit}</td>
+                <td>{appointment.patientFirstName}</td>
+                <td>{appointment.purposeOfVisitName}</td>
                 <td>{appointment.illnessOrDisease}</td>
                 <td>{appointment.proceduresOrMedication}</td>
                 <td><span className={`status-badge status-${appointment.status.toLowerCase()}`}>{appointment.status}</span></td>
                 <td>
-                  <button className="edit-btn" onClick={() => navigateToAppointmentProfile(appointment.appointmentId)}><i className="fas fa-edit"></i></button>
+                  {(appointment.status === 'Scheduled' || appointment.status === 'Rescheduled') && <button className="edit-btn" onClick={() => navigateToAppointmentProfile(appointment.appointmentId)}><i className="fas fa-edit"></i></button>}
                   {/* <button className="delete-btn"><i className="fas fa-trash"></i></button> */}
                 </td>
               </tr>

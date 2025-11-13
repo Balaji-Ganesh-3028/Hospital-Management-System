@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './UserList.css';
 import { DeleteUesrProfile, GetAllUserProfile } from '../../../Service/User-Profile/user-profile';
-import type { AllUserDetails } from '../../../Models/User-Profile';
+import type { AllUserDetails, UserProfileQueryParams } from '../../../Models/User-Profile';
 import { useNavigate } from 'react-router-dom';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
@@ -15,6 +15,8 @@ function UserList({ onClickEdit }: UserListProps) {
   const [userList, setUserList] = useState<AllUserDetails[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [userType, setUserType] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const isFrontDesk = user?.roleName === 'Front Desk';
@@ -32,11 +34,20 @@ function UserList({ onClickEdit }: UserListProps) {
 
   useEffect(() => {
     loadUsers();
-  }, [userType]);
+  }, [userType, currentPage, itemsPerPage]);
 
   const loadUsers = async () => {
     try {
-      const response = await GetAllUserProfile(searchTerm, userType);
+      const payload: UserProfileQueryParams = {
+        SearchTerm: searchTerm,
+        UserType: userType,
+        PageNumber: currentPage,
+        PageSize: itemsPerPage,
+        SortByOrder: '',
+        SortByColumn: '',
+      }
+      const response = await GetAllUserProfile(payload);
+      console.log(response);
       setUserList(response);
     } catch (error) {
       console.error('Error fetching user list:', error);
@@ -46,10 +57,18 @@ function UserList({ onClickEdit }: UserListProps) {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setUserType(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleItemsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value, 'items per page');
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1);
   };
 
   const navigateToUserProfile = (userId: number) => {
@@ -71,6 +90,12 @@ function UserList({ onClickEdit }: UserListProps) {
       notify('Something went wrong!!!', ToastMessageTypes.ERROR);
     }
   }
+
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentUsers = userList.slice(indexOfFirstItem, indexOfLastItem);
+  // console.log(currentUsers, 'currentUsers');
+  const totalPages = Math.ceil(userList[0]?.total / itemsPerPage);
 
   return (
     <div className="user-list-container">
@@ -131,6 +156,25 @@ function UserList({ onClickEdit }: UserListProps) {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="pagination-controls">
+        <div className="items-per-page-selector">
+          <label htmlFor="itemsPerPage">Show:</label>
+          <select id="itemsPerPage" value={itemsPerPage} onChange={handleItemsPerPageChange}>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={30}>30</option>
+          </select>
+        </div>
+        <div className="pagination">
+          <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -53,4 +53,14 @@ export interface AllUserDetails {
   gender: number;
   phoneNumber: string;
   userType: string;
+  total: number;
+}
+
+export interface UserProfileQueryParams {
+  SearchTerm?: string;
+  UserType?: string;
+  PageNumber?: number;
+  PageSize?: number;
+  SortByOrder?: string;
+  SortByColumn?: string;
 }

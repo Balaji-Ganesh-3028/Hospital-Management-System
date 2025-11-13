@@ -36,6 +36,7 @@ namespace DataAccessLayer.Implementation
                             {
                                 AppointmentId = reader["AppointmentId"] as int? ?? 0,
                                 AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
+                                PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
                                 PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
                                 IllnessOrDisease = reader["IllnessOrDisease"] as string,
                                 ProceduresOrMedication = reader["ProceduresOrMedication"] as string,
@@ -79,6 +80,7 @@ namespace DataAccessLayer.Implementation
                             {
                                 AppointmentId = reader["AppointmentId"] as int? ?? 0,
                                 AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
+                                PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
                                 PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
                                 IllnessOrDisease = reader["IllnessOrDisease"] as string,
                                 ProceduresOrMedication = reader["ProceduresOrMedication"] as string,

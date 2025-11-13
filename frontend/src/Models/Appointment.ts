@@ -17,6 +17,7 @@ export interface AppointmentDetails {
   appointmentId: number;
   appointmentDate: string;
   purposeOfVisit: number;
+  purposeOfVisitName: string;
   illnessOrDisease: string;
   proceduresOrMedication: null;
   currentStatus: number;

@@ -9,6 +9,7 @@ const Appointments: React.FC = () => {
   const activeTab = searchParams.get('page') || 'appointmentList';
   const appointmentId = searchParams.get('userId');
   
+  
    const switchTab = (tab: string) => {
     setSearchParams({ page: tab });
   };

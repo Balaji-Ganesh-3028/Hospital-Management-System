@@ -23,9 +23,9 @@ namespace BusinessLayer.Implementation
         }
 
 
-        public async Task<object> GetAllUserDetails(string? searchTerm, string? userType)
+        public async Task<object> GetAllUserDetails(UserDetailsQuery query)
         {
-            return await _userProfileDal.GetAllUserDetails(searchTerm, userType);
+            return await _userProfileDal.GetAllUserDetails(query);
         }
 
         public async Task<object> GetUserDetails(int userId)

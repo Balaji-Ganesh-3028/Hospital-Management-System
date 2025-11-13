@@ -1,8 +1,11 @@
 import type { PatientDetails, PatientRequest } from "../../../Models/Patient";
 
-export const setAdaptor = (data: PatientDetails): PatientRequest => {
+export const setAdaptor = (
+  data: PatientDetails,
+  id: number
+): PatientRequest => {
   return {
-    userId: toGetUserId(),
+    userId: id,
     doj: data.doj || "",
     bloodGroup: data.bloodGroup || "",
     allergies: data.allergies || "",
@@ -15,7 +18,7 @@ export const setAdaptor = (data: PatientDetails): PatientRequest => {
   };
 };
 
-const toGetUserId = () => {
+export const toGetUserId = () => {
   const data = localStorage.getItem("user");
   console.log(data);
   if (data) return JSON.parse(data).userId;

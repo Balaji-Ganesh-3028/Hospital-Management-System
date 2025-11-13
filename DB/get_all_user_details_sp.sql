@@ -33,7 +33,8 @@ BEGIN
           WHEN pd.Id IS NOT NULL THEN 'Patient'
           WHEN dd.Id IS NOT NULL THEN 'Doctor'
           ELSE 'User'
-        END AS UserType
+        END AS UserType,
+        COUNT(*) OVER() AS TotalCount
       FROM UserDirectory AS ud
         INNER JOIN UserProfile AS up ON ud.Id = up.UserId
         INNER JOIN UserContactDetails AS ucd ON ud.Id = ucd.UserId
@@ -59,7 +60,8 @@ BEGIN
     Lastname,
     Gender,
     PhoneNumber,
-    UserType
+    UserType,
+    TotalCount
   FROM UserCTE
   ORDER BY
         CASE WHEN @SortByColumn = 'Firstname' AND @SortByOrder = 'ASC' THEN Firstname END ASC,

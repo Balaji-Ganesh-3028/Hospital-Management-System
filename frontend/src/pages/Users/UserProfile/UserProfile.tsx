@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './UserProfile.css';
-import { UserProfilePayload } from '../Helpers/User-Profile-Payload';
+import { toGetUserId, UserProfilePayload } from '../Helpers/User-Profile-Payload';
 import type { UserProfileFormData } from '../../../Models/User-Profile';
 import { GetUserProfile, InsertUserProfile, UpdateUserProfile } from '../../../Service/User-Profile/user-profile';
 import type { Lookup } from '../../../Models/Lookups';
@@ -24,8 +24,6 @@ const UserProfile: React.FC = () => {
   const isAdmin = user?.roleName == 'Admin' || 'Super Admin'; // Check if the user is Admin & Super Admin
 
   const [userId, setUserId] = useState<number>(0);
-
-  // setUserId(parseInt(searchParams.get('userId') || '0'));
 
   const [formData, setFormData] = useState<UserProfileFormData>({
     firstName: '',
@@ -54,30 +52,38 @@ const UserProfile: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
+
+    // UPDATE USER PROFILE
+    if(searchParams.get('userId')) {
+      const payload = await UserProfilePayload(formData, Number(searchParams.get('userId')));
+
+      try {
+        const updateResponse = await UpdateUserProfile(payload);
+
+        if (updateResponse == "User details updated successfully") {
+          notify(updateResponse, ToastMessageTypes.SUCCESS);
+        }
+        else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR)
+        return; 
+      } catch(error) {
+        console.error('Error updating user profile:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR);
+      }
+    }
+
+    // INSERT USER PROFILE
     try {
       showSpinner();
-      const payload = UserProfilePayload(formData);
+      const payload = UserProfilePayload(formData, userId);
 
       // INSERT USER PROFILE
-      if (!userId) {
         const response = await InsertUserProfile(payload);
         if (response == "User details added successfully") {
           notify(response, ToastMessageTypes.SUCCESS);
           // if (isFrontDesk) navigate('/users?page=userList');
         }
         else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR);
-        return;
-      }
-      
-      // UPDATE USER PROFILE
-      // debugger;
-      const updateResponse = await UpdateUserProfile(payload);
-      // debugger;
-      if (updateResponse == "User details updated successfully") {
-        notify(updateResponse, ToastMessageTypes.SUCCESS);
-      }
-      else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR)
-      
+        return; 
     } catch (error) {
       console.error('Error inserting user profile:', error);
       notify("Something went wrong!!!", ToastMessageTypes.ERROR);

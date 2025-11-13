@@ -1,8 +1,8 @@
 import type { DoctorDetails, DoctorRequest } from "../../../Models/Doctor";
 
-export const setAdaptor = (data: DoctorDetails): DoctorRequest => {
+export const setAdaptor = (data: DoctorDetails, id: number): DoctorRequest => {
   return {
-    userId: toGetUserId(),
+    userId: id,
     dateOfAssociation: data.dateOfAssociation || "",
     licenseNumber: data.licenseNumber || "",
     qualification: data.qualification || 0,
@@ -12,7 +12,7 @@ export const setAdaptor = (data: DoctorDetails): DoctorRequest => {
   };
 };
 
-const toGetUserId = () => {
+export const toGetUserId = () => {
   const data = localStorage.getItem("user");
   console.log(data);
   if (data) return JSON.parse(data).userId;

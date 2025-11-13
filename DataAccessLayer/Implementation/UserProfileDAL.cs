@@ -105,7 +105,7 @@ namespace DataAccessLayer.Implementation
             }
         }
 
-        public async Task<object> GetAllUserDetails(string? searchTerm = "", string? userType = "All")
+        public async Task<object> GetAllUserDetails(UserDetailsQuery query)
         {
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
@@ -114,8 +114,12 @@ namespace DataAccessLayer.Implementation
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@searchTerm", searchTerm);
-                    cmd.Parameters.AddWithValue("@UserTypeFilter", userType);
+                    cmd.Parameters.AddWithValue("@searchTerm", query.SearchTerm);
+                    cmd.Parameters.AddWithValue("@UserTypeFilter", query.UserType);
+                    cmd.Parameters.AddWithValue("@pageSize", query.PageSize);
+                    cmd.Parameters.AddWithValue("@pageNumber", query.PageNumber);
+                    cmd.Parameters.AddWithValue("@SortByOrder", query.SortByOrder);
+                    cmd.Parameters.AddWithValue("@SortByColumn", query.SortByColumn);
 
                     var userList = new List<object>();
 
@@ -131,7 +135,8 @@ namespace DataAccessLayer.Implementation
                                 lastName = reader.GetString("lastname"),
                                 gender = reader.GetInt32(4),
                                 phoneNumber = reader.GetString("phoneNumber"),
-                                userType = reader.GetString("userType")
+                                userType = reader.GetString("userType"),
+                                total = reader["TotalCount"]
                             });
                         }
 

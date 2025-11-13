@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './AddDoctor.css';
 // @ts-expect-error: module has no declaration file
 import { useSpinner } from "../../../Contexts/SpinnerContext";
-import { GetDoctorDetails, InsertDoctor } from '../../../Service/Doctor/Doctor';
+import { GetDoctorDetails, InsertDoctor, UpdateDoctor } from '../../../Service/Doctor/Doctor';
 import { GetDesignation, GetQualification, GetSpecialisation } from '../../../Service/Lookups/Lookups';
 import type { Lookup } from '../../../Models/Lookups';
-import { setAdaptor } from '../Helpers/set-adaptor';
+import { setAdaptor, toGetUserId } from '../Helpers/set-adaptor';
 import { ToastMessageTypes } from '../../../Enums/Toast-Message';
 import { notify } from '../../../Service/Toast-Message/Toast-Message';
 import { useSearchParams } from 'react-router-dom';
@@ -43,7 +43,21 @@ const AddDoctor: React.FC = () => {
     e.preventDefault();
     console.log('Doctor Data:', formData);
 
-    const payload = await setAdaptor(formData);
+    if (searchParams.get('userId')) {
+      const payload = await setAdaptor(formData, Number(searchParams.get('userId')));
+      try {
+        const response = await UpdateDoctor(payload);
+        if (response) {
+          notify(response.data, ToastMessageTypes.SUCCESS);
+        }
+      } catch (error) {
+        console.error('Error inserting doctor:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR)
+      }
+      return;
+    }
+
+    const payload = await setAdaptor(formData, toGetUserId());
     try {
       const response = await InsertDoctor(payload);
       if (response) {
