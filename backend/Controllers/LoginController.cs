@@ -66,8 +66,6 @@ namespace backend.Controllers
                         {
                             return BadRequest(AppConstants.ResponseMessages.LoginFailed);
                         }
-
-
                     }
                 }
             }
