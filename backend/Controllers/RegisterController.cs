@@ -9,11 +9,9 @@ namespace backend.Controllers
 
     public class RegisterController : Controller
     {
-        private readonly IConfiguration _configuration;
         private readonly IRegisterService _registerService;
-        public RegisterController(IConfiguration congiguration, IRegisterService registerService)
+        public RegisterController(IRegisterService registerService)
         {
-            _configuration = congiguration;
             _registerService = registerService;
         }
 
@@ -23,31 +21,15 @@ namespace backend.Controllers
         {
             if (request == null)
             {
-                return BadRequest("User details required");
+                return BadRequest("User details are required.");
             }
 
-            var result = await _registerService.RegisterUser(request);
+            // The service method should be refactored to return Task instead of Task<string>
+            await _registerService.RegisterUser(request);
 
-            if (result != "Success")
-            {
-                if (result.StartsWith("Database error: "))
-                {
-                    return StatusCode(500, result);
-                }
-                else if (result.StartsWith("Internal server error: "))
-                {
-                    return StatusCode(500, result);
-                }
-                else
-                {
-                    return BadRequest("Registration failed, Something went wrong!!");
-                }
-            }
-            else
-            {
-                return StatusCode(200, "User registered successfully");
-            }
-
+            // On success, return a 201 Created status with a success message.
+            // If RegisterUser throws an exception, the ExceptionHandler middleware will catch it.
+            return StatusCode(201, "User registered successfully");
         }
     }
 }

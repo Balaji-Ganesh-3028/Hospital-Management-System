@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using backend.CustomAttributes;
+using backend.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Reflection.PortableExecutable;
 
 namespace backend.Controllers
 {
@@ -18,7 +18,8 @@ namespace backend.Controllers
             connectionString = _configuration["ConnectionStrings:DB"];
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk)]
         public async Task<IActionResult> GetDashboardDetails()
         {
             using(SqlConnection connection = new SqlConnection(connectionString))

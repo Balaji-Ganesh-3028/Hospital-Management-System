@@ -1,8 +1,8 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using backend.CustomAttributes;
 
 namespace backend.Controllers
 {
@@ -16,8 +16,8 @@ namespace backend.Controllers
             _userProfileBL = userProfileBL;
         }
 
-        [HttpPost("")]
-        [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
+        [HttpPost]
+        [CustomAuth(Roles.Patient, Roles.Doctor, Roles.Admin)]
         public async Task<IActionResult> UserProfile([FromBody] UserProfile userProfile)
         {
             // IF USER PROFILE IS EMPTY
@@ -36,8 +36,8 @@ namespace backend.Controllers
             return Ok("User details added successfully");
         }
 
-        [HttpPut("")]
-        [CustomAuth("Patient", "Doctor", "Admin", "Super Admin")]
+        [HttpPut]
+        [CustomAuth(Roles.Patient, Roles.Doctor, Roles.Admin)]
         public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfile userProfile)
         {
             // IF USER PROFILE IS EMPTY
@@ -56,8 +56,8 @@ namespace backend.Controllers
             return Ok("User details updated successfully");
         }
 
-        [HttpGet("")]
-        [CustomAuth("Front Desk", "Doctor", "Admin")]
+        [HttpGet]
+        [CustomAuth(Roles.FrontDesk, Roles.Doctor, Roles.Admin)]
         public async Task<IActionResult> GetAllUserDetails([FromQuery] UserDetailsQuery query)
         {
             var result = await _userProfileBL.GetAllUserDetails(query);
@@ -65,7 +65,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("{userId}")]
-        [CustomAuth("Patient", "Doctor", "Admin", "Front Desk")]
+        [CustomAuth(Roles.Patient, Roles.Doctor, Roles.Admin, Roles.FrontDesk)]
         public async Task<IActionResult> GetUserProfileDetail(int userId)
         {
             if(userId == 0)
@@ -77,6 +77,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{userId}")]
+        [CustomAuth(Roles.Admin)]
         public async Task<IActionResult> DeleteUserProfile(int userId)
         {
             if(userId == 0)

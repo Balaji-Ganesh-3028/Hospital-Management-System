@@ -1,6 +1,7 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -16,7 +17,8 @@ namespace backend.Controllers
         }
 
 
-        [HttpPost("")]
+        [HttpPost]
+        [CustomAuth(Roles.Admin, Roles.Patient)]
         public async Task<IActionResult> InsertPatientDetails([FromBody] PatientDetails patientDetails)
         {
             if (patientDetails == null) 
@@ -34,7 +36,8 @@ namespace backend.Controllers
             }
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [CustomAuth(Roles.Admin, Roles.Patient)]
         public async Task<IActionResult> UpdatePatientDetails([FromBody] PatientDetails patientDetails)
         {
             var result = await _patientBL.UpdatePatientDetails(patientDetails);
@@ -48,7 +51,8 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetAllPatient()
         {
             var result = await _patientBL.GetAllPatientDetails();
@@ -56,12 +60,11 @@ namespace backend.Controllers
         }
 
         [HttpGet("{userId}")]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetPatientDetails(int userId)
         {
             var result = await _patientBL.GetPatientDetails(userId);
             return Ok(result);
         }
-
-
     }
 }
