@@ -32,11 +32,11 @@ builder.Services.AddCors(Options =>
 {
     Options.AddPolicy("Cors-Policy", builder =>
     {
+        // TODO: Replace with your specific frontend origins in production
         builder.WithOrigins(
             "http://localhost:5173",
-            "http://192.168.1.6:5173",
-            "*"
-        ).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            "http://192.168.1.6:5173"
+        ).AllowAnyHeader().AllowAnyMethod();
     });
 });
 
@@ -54,8 +54,6 @@ builder.Services.AddScoped<IDoctorBL, DoctorBL>();
 builder.Services.AddScoped<IDoctorDAL, DoctorDAL>();
 builder.Services.AddScoped<IAppointmentBL, AppointmentBL>();
 builder.Services.AddScoped<IAppointmentDAL, AppointmentDAL>();
-
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -76,8 +74,6 @@ app.UseHttpsRedirection();
 app.UseCors("Cors-Policy");
 
 app.UseAuthentication();
-
-app.UseMiddleware<JwtValidation>();
 
 app.UseAuthorization();
 

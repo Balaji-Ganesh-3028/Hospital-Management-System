@@ -1,6 +1,8 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -16,35 +18,38 @@ namespace backend.Controllers
             _appointmentBL = appointmentBL;
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> InsertAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.InsertAppointment(appointment);
-            if(result == "Success")
+            if(result == AppConstants.DBResponse.Success )
             {
-                return Ok("Doctor Apponitment fixed");
+                return Ok(AppConstants.ResponseMessages.DoctorAppointmentFixed);
             }
             else
             {
-                return BadRequest("Something went worng!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> UpdateAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.UpdateAppointment(appointment);
-            if (result == "Success")
+            if (result == AppConstants.DBResponse.Success)
             {
-                return Ok("Doctor Apponitment updated");
+                return Ok(AppConstants.ResponseMessages.DoctorAppointmentUpdates);
             }
             else
             {
-                return BadRequest("Something went worng!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.Doctor, Roles.Patient, Roles.FrontDesk)]
         public async Task<IActionResult> GetAllAppointments()
         {
             var result = await _appointmentBL.GetAllAppointmentDetails();
@@ -52,6 +57,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("{appointmentId}")]
+        [CustomAuth(Roles.Admin, Roles.Doctor, Roles.Patient, Roles.FrontDesk)]
         public async Task<IActionResult> GetAppointment(int appointmentId)
         {
             var result = await _appointmentBL.GetAppointmentDetail(appointmentId);

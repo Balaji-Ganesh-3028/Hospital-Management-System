@@ -36,3 +36,5 @@ backend/obj
 *backend/obj/
 frontend/package-lock.json
 /frontend/package-lock.json
+/Constant/obj
+/.gitignore
