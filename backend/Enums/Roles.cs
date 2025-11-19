@@ -1,11 +1,10 @@
-// C#
 namespace backend.Enum
 {
     public enum Roles
     {
-        Admin,        // Removed string assignment
+        Admin,
         Patient,
         Doctor,
-        FrontDesk    // Replaced hyphen with camel case
+        FrontDesk
     }
 }

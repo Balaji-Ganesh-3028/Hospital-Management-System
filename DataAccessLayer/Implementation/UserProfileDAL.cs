@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using DataAccessLayer.Interface;
+﻿using DataAccessLayer.Interface;
 using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;

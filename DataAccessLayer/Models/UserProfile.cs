@@ -1,6 +1,4 @@
-﻿using DataAccessLayer.models;
-
-namespace DataAccessLayer.Models
+﻿namespace DataAccessLayer.Models
 {
     public class UserProfile
     {
