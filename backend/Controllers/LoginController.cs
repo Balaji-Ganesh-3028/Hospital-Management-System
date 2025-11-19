@@ -1,5 +1,6 @@
 ﻿using backend.models;
 using backend.utilities;
+using Constant.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -22,67 +23,54 @@ namespace backend.Controllers
             var token = string.Empty;
             string connectionString = _configuration["ConnectionStrings:DB"];
 
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                await connection.OpenAsync();
+
+                using (SqlCommand command = new SqlCommand("sp_login", connection))
                 {
-                    await connection.OpenAsync();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@email", request.email);
+                    command.Parameters.AddWithValue("@password", request.password);
 
-                    using (SqlCommand command = new SqlCommand("sp_login", connection))
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@email", request.email);
-                        command.Parameters.AddWithValue("@password", request.password);
-
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        if (reader.HasRows)
                         {
-                            if (reader.HasRows)
+                            if (reader.Read() && reader["message"].ToString() == AppConstants.DBResponse.LoginSuccessful)
                             {
-                                if (reader.Read() && reader["message"].ToString() == "Login successful")
+                                var userName = reader["userName"].ToString();
+                                var claims = new ClaimsItems
                                 {
-                                    var userName = reader["userName"].ToString();
-                                    var claims = new ClaimsItems
-                                    {
-                                        roleId = reader["roleId"].ToString(),
-                                        userName = reader["UserName"].ToString(),
-                                        email = reader["Email"].ToString(),
-                                        roleName = reader["RoleName"].ToString(),
-                                        userId = (int)reader["Id"],
-                                        UserType = reader["UserType"].ToString(),
-                                        UserTypeId = (int)reader["UserTypeId"]
-                                    };
+                                    roleId = reader["roleId"].ToString(),
+                                    userName = reader["UserName"].ToString(),
+                                    email = reader["Email"].ToString(),
+                                    roleName = reader["RoleName"].ToString(),
+                                    userId = (int)reader["Id"],
+                                    UserType = reader["UserType"].ToString(),
+                                    UserTypeId = (int)reader["UserTypeId"]
+                                };
 
-                                    token = GenerateToken.CreateToken(claims);
-                                    return StatusCode(200, new
-                                    {
-                                        data = claims,
-                                        txt = "Success",
-                                        message = userName + " logged in successfully.",
-                                        token = token
-                                    });
-                                }
-                                return BadRequest("Login failed, Something went wrong!!");
+                                token = GenerateToken.CreateToken(claims);
+                                return StatusCode(200, new
+                                {
+                                    data = claims,
+                                    txt = AppConstants.DBResponse.Success,
+                                    message = userName + AppConstants.ResponseMessages.LoggedInSuccessfully,
+                                    token = token
+                                });
                             }
-                            else
-                            {
-                                Console.WriteLine("No rows found.");
-                                return BadRequest("Login failed, Something went wrong!!");
-                            }
-
-
+                            return BadRequest(AppConstants.ResponseMessages.LoginFailed);
                         }
+                        else
+                        {
+                            return BadRequest(AppConstants.ResponseMessages.LoginFailed);
+                        }
+
+
                     }
                 }
             }
-            catch (SqlException sqlEx)
-            {
-                return BadRequest("Database error: " + sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Internal server error: " + ex.Message);
-            }
         }
-
     }
 }

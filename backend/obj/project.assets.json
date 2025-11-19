@@ -927,10 +927,21 @@
           "bin/placeholder/BusinessLayer.dll": {}
         }
       },
+      "Constant/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Constant.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Constant.dll": {}
+        }
+      },
       "DataAccessLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Constant": "1.0.0",
           "Microsoft.Data.SqlClient": "6.1.2",
           "Microsoft.Extensions.Configuration": "9.0.10",
           "Microsoft.Extensions.Options": "9.0.10"
@@ -2514,6 +2525,11 @@
       "path": "../BusinessLayer/BusinessLayer.csproj",
       "msbuildProject": "../BusinessLayer/BusinessLayer.csproj"
     },
+    "Constant/1.0.0": {
+      "type": "project",
+      "path": "../Constant/Constant.csproj",
+      "msbuildProject": "../Constant/Constant.csproj"
+    },
     "DataAccessLayer/1.0.0": {
       "type": "project",
       "path": "../DataAccessLayer/DataAccessLayer.csproj",
@@ -2523,6 +2539,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BusinessLayer >= 1.0.0",
+      "Constant >= 1.0.0",
       "DataAccessLayer >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.21",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.10",
@@ -2559,6 +2576,9 @@
           "projectReferences": {
             "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\BusinessLayer.csproj": {
               "projectPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\BusinessLayer.csproj"
+            },
+            "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\Constant.csproj": {
+              "projectPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\Constant.csproj"
             },
             "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\DataAccessLayer.csproj": {
               "projectPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\DataAccessLayer.csproj"

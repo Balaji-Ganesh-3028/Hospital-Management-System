@@ -1,6 +1,7 @@
 ﻿using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,17 +24,17 @@ namespace backend.Controllers
             // IF USER PROFILE IS EMPTY
             if (userProfile == null)
             {
-                return BadRequest("User details should contain value");
+                return BadRequest(AppConstants.ResponseMessages.UserDetailsReuqired);
             }
 
             var result = await _userProfileBL.UserProfile(userProfile);
             Console.WriteLine("User Profile Error: " + result);
-            if (result != "Success")
+            if (result != AppConstants.DBResponse.Success)
             {
-                return StatusCode(500, "An error occurred while updating the user profile.");
+                return StatusCode(500, AppConstants.ResponseMessages.InsertUserErrorMessage);
             }
 
-            return Ok("User details added successfully");
+            return Ok(AppConstants.ResponseMessages.UserDetailsAddedSuccessfully);
         }
 
         [HttpPut]
@@ -43,17 +44,17 @@ namespace backend.Controllers
             // IF USER PROFILE IS EMPTY
             if (userProfile == null)
             {
-                return BadRequest("User details should contain value");
+                return BadRequest(AppConstants.ResponseMessages.UserDetailsReuqired);
             }
 
             var result = await _userProfileBL.UserProfileUpdate(userProfile);
             Console.WriteLine("User Profile Error: " + result);
-            if (result != "Success")
+            if (result != AppConstants.DBResponse.Success)
             {
-                return StatusCode(500, "An error occurred while updating the user profile.");
+                return StatusCode(500, AppConstants.ResponseMessages.UpdateUserErrorMessage);
             }
 
-            return Ok("User details updated successfully");
+            return Ok(AppConstants.ResponseMessages.UserDetailsUpdatedSuccessfully);
         }
 
         [HttpGet]
@@ -70,7 +71,7 @@ namespace backend.Controllers
         {
             if(userId == 0)
             {
-                return BadRequest("userId is required");
+                return BadRequest(AppConstants.ResponseMessages.UserIdRequired);
             }
             var result = await _userProfileBL.GetUserDetails(userId);
             return Ok(result);
@@ -82,17 +83,17 @@ namespace backend.Controllers
         {
             if(userId == 0)
             {
-                return BadRequest("UserId is required");
+                return BadRequest(AppConstants.ResponseMessages.UserIdRequired);
             }
 
             var result = await _userProfileBL.DeleteUserProfile(userId);
 
-            if (result == "Success")
+            if (result == AppConstants.DBResponse.Success)
             {
                return Ok(result);
             } else
             {
-                return BadRequest("Something went wrong!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 

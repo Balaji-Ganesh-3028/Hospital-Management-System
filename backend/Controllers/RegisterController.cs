@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,15 +22,13 @@ namespace backend.Controllers
         {
             if (request == null)
             {
-                return BadRequest("User details are required.");
+                return BadRequest(AppConstants.ResponseMessages.UserDetailsReuqired);
             }
 
             // The service method should be refactored to return Task instead of Task<string>
             await _registerService.RegisterUser(request);
 
-            // On success, return a 201 Created status with a success message.
-            // If RegisterUser throws an exception, the ExceptionHandler middleware will catch it.
-            return StatusCode(201, "User registered successfully");
+            return Ok(AppConstants.ResponseMessages.UserRegisteredSuccessfully);
         }
     }
 }
