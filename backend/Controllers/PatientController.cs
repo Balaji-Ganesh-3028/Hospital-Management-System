@@ -1,6 +1,8 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -16,39 +18,42 @@ namespace backend.Controllers
         }
 
 
-        [HttpPost("")]
+        [HttpPost]
+        [CustomAuth(Roles.Admin, Roles.Patient)]
         public async Task<IActionResult> InsertPatientDetails([FromBody] PatientDetails patientDetails)
         {
             if (patientDetails == null) 
             { 
-                return BadRequest("Patient details are required");
+                return BadRequest(AppConstants.ResponseMessages.PatientDetailsRequired);
             }
             var result = await _patientBL.InsertPatientDetails(patientDetails);
 
-            if (result == "Success")
+            if (result == AppConstants.DBResponse.Success)
             {
-                return Ok("Patient details added successfully");
+                return Ok(AppConstants.ResponseMessages.PatientDetailsAddedSuccessfully);
             } else
             {
-                return BadRequest("Something went wrong!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [CustomAuth(Roles.Admin, Roles.Patient)]
         public async Task<IActionResult> UpdatePatientDetails([FromBody] PatientDetails patientDetails)
         {
             var result = await _patientBL.UpdatePatientDetails(patientDetails);
-            if (result == "Success")
+            if (result == AppConstants.DBResponse.Success)
             {
-                return Ok("Patient details updated successfully");
+                return Ok(AppConstants.ResponseMessages.PatientDetailsUpdatedSuccessfully);
             }
             else
             {
-                return BadRequest("Something went wrong!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetAllPatient()
         {
             var result = await _patientBL.GetAllPatientDetails();
@@ -56,12 +61,11 @@ namespace backend.Controllers
         }
 
         [HttpGet("{userId}")]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetPatientDetails(int userId)
         {
             var result = await _patientBL.GetPatientDetails(userId);
             return Ok(result);
         }
-
-
     }
 }

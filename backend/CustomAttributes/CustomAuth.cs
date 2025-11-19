@@ -1,6 +1,5 @@
-﻿using backend.utilities;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using backend.Enum;
+using backend.utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -8,11 +7,11 @@ namespace backend.CustomAttributes
 {
     public class CustomAuth: Attribute, IAuthorizationFilter
     {
-        private readonly List<string> allowedRoles = null;
+        private readonly List<Roles> allowedRoles = null;
 
-        public CustomAuth(params string[] roles)
+        public CustomAuth(params Roles[] roles)
         {
-            allowedRoles = new List<string>(roles);
+            allowedRoles = new List<Roles>(roles);
             Console.WriteLine("Allowed Roles: " + string.Join(", ", allowedRoles));
         }
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -35,9 +34,17 @@ namespace backend.CustomAttributes
 
                 Console.WriteLine("User Role from Token: " + userRoleClaim);
                 Console.WriteLine("allowedRoles: " + allowedRoles);
-                if (!allowedRoles.Contains(userRoleClaim))
+                // Convert string claim to enum
+                if (!System.Enum.TryParse(userRoleClaim, true, out Roles userRoleEnum))
+                {
+                    context.Result = new UnauthorizedObjectResult("Invalid role in token");
+                    return;
+                }
+
+                if (!allowedRoles.Contains(userRoleEnum))
                 {
                     context.Result = new UnauthorizedObjectResult("User is not authorized to access the API");
+                    return;
                 }
             }
         }

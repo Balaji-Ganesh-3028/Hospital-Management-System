@@ -1,7 +1,4 @@
-﻿
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
 
 namespace backend.Middleware

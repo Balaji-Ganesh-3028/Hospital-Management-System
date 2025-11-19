@@ -11,3 +11,5 @@ BEGIN
 END;
 
 EXEC sp_GetMasterData 'designation';
+
+-- SP_HELPTEXT sp_delete_user_details

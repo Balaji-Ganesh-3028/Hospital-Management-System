@@ -1,6 +1,8 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -15,7 +17,8 @@ namespace backend.Controllers
             _doctorBL = doctorBL;
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetAllDoctor()
         {
             var result = await _doctorBL.GetAllDoctorDetails();
@@ -23,38 +26,41 @@ namespace backend.Controllers
         }
 
         [HttpGet("{userId}")]
+        [CustomAuth(Roles.Admin, Roles.FrontDesk, Roles.Doctor, Roles.Patient)]
         public async Task<IActionResult> GetDoctor(int userId)
         {
             var result = await _doctorBL.GetDoctorDetails(userId);
             return Ok(result);
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> InsertDoctorDetail(DoctorDetails doctorDetails)
         {
             if (doctorDetails == null)
             {
-                return BadRequest("Doctor details required");
+                return BadRequest(AppConstants.ResponseMessages.DoctorDetailsRequired);
             }
 
             var result = await _doctorBL.InsertDoctorDetails(doctorDetails);
 
-            if (result == "Success") return Ok("Details added successfully");
-            else return BadRequest("Something went wrong!!!");
+            if (result == AppConstants.DBResponse.Success) return Ok(AppConstants.ResponseMessages.DoctorDetailsAddedSuccessfully);
+            else return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> UpdateDoctorDetail(DoctorDetails doctorDetails)
         {
             if (doctorDetails == null)
             {
-                return BadRequest("Doctor details required");
+                return BadRequest(AppConstants.ResponseMessages.DoctorDetailsRequired);
             }
 
             var result = await _doctorBL.UpdateDoctorDetails(doctorDetails);
 
-            if (result == "Success") return Ok("Details updated successfully");
-            else return BadRequest("Something went wrong!!!");
+            if (result == AppConstants.DBResponse.Success) return Ok(AppConstants.ResponseMessages.DoctorDetailsUpdatedSuccessfully);
+            else return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
         }
 
     }
