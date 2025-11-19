@@ -19,39 +19,28 @@ namespace DataAccessLayer.Implementation
 
         public async Task<string> RegisterUser(RegisterRequest request)
         {
-            try
+            using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
-                using (SqlConnection connection = new SqlConnection(_dbConnectionString))
+                await connection.OpenAsync();
+
+                using (SqlCommand command = new SqlCommand("sp_register", connection))
                 {
-                    await connection.OpenAsync();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@userName", request.username);
+                    command.Parameters.AddWithValue("@email", request.email);
+                    command.Parameters.AddWithValue("@passwordHash", request.password);
+                    command.Parameters.AddWithValue("@roleId", request.roleId);
 
-                    using (SqlCommand command = new SqlCommand("sp_register", connection))
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@userName", request.username);
-                        command.Parameters.AddWithValue("@email", request.email);
-                        command.Parameters.AddWithValue("@passwordHash", request.password);
-                        command.Parameters.AddWithValue("@roleId", request.roleId);
-
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        if (reader.Read() && reader["message"]?.ToString() == "Registered")
                         {
-                            if (reader.Read() && reader["message"]?.ToString() == "Registered")
-                            {
-                                return AppConstants.DBResponse.Success;
-                            }
-                            return AppConstants.DBResponse.Failed;
+                            return AppConstants.DBResponse.Success;
                         }
+                        return AppConstants.DBResponse.Failed;
                     }
-
                 }
-            }
-            catch (SqlException sqlEx)
-            {
-                return AppConstants.ResponseMessages.DatabaseError + sqlEx.Message;
-            }
-            catch (Exception ex)
-            {
-                return AppConstants.ResponseMessages.InternalServerError + ex.Message;
+
             }
         }
     }
