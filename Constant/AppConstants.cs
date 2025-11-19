@@ -36,6 +36,7 @@
             public const string UserDeletionFfailed = "User record not deleted";
             public const string UserIdRequired = "UserId is required";
             public const string UserNotFound = "User not found";
+
         }
 
         public static class DBResponse
