@@ -36,6 +36,7 @@
             public const string UserDeletionFfailed = "User record not deleted";
             public const string UserIdRequired = "UserId is required";
             public const string UserNotFound = "User not found";
+            public const string InvalidUserCredentials = "Invalid user credentials";
         }
 
         public static class DBResponse
@@ -45,6 +46,8 @@
             public const string Error = "Error";
             public const string NotFound = "Not Found";
             public const string LoginSuccessful = "Login successful";
+            public const string InvalidCredentials = "Invalid credentials";
+            public const string UserNotFound = "User not found";
         }
     }
 }

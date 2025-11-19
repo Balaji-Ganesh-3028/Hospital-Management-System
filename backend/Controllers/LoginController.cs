@@ -20,56 +20,55 @@ namespace backend.Controllers
         [HttpPost("/login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var token = string.Empty;
             string connectionString = _configuration["ConnectionStrings:DB"];
+            using SqlConnection connection = new SqlConnection(connectionString);
+            await connection.OpenAsync();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using SqlCommand command = new SqlCommand("sp_login", connection)
             {
-                await connection.OpenAsync();
+                CommandType = CommandType.StoredProcedure
+            };
+            command.Parameters.AddWithValue("@email", request.email);
+            command.Parameters.AddWithValue("@password", request.password);
 
-                using (SqlCommand command = new SqlCommand("sp_login", connection))
+            using SqlDataReader reader = await command.ExecuteReaderAsync();
+            {
+                if (reader.Read())
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@email", request.email);
-                    command.Parameters.AddWithValue("@password", request.password);
-
-                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    var message = reader["message"].ToString();
+                    if (message == AppConstants.DBResponse.LoginSuccessful)
                     {
-                        if (reader.HasRows)
+                        var claims = new ClaimsItems
                         {
-                            if (reader.Read() && reader["message"].ToString() == AppConstants.DBResponse.LoginSuccessful)
-                            {
-                                var userName = reader["userName"].ToString();
-                                var claims = new ClaimsItems
-                                {
-                                    roleId = reader["roleId"].ToString(),
-                                    userName = reader["UserName"].ToString(),
-                                    email = reader["Email"].ToString(),
-                                    roleName = reader["RoleName"].ToString(),
-                                    userId = (int)reader["Id"],
-                                    UserType = reader["UserType"].ToString(),
-                                    UserTypeId = (int)reader["UserTypeId"]
-                                };
+                            roleId = reader["roleId"].ToString(),
+                            userName = reader["UserName"].ToString(),
+                            email = reader["Email"].ToString(),
+                            roleName = reader["RoleName"].ToString(),
+                            userId = (int)reader["Id"],
+                            UserType = reader["UserType"].ToString(),
+                            UserTypeId = (int)reader["UserTypeId"]
+                        };
 
-                                token = GenerateToken.CreateToken(claims);
-                                return StatusCode(200, new
-                                {
-                                    data = claims,
-                                    txt = AppConstants.DBResponse.Success,
-                                    message = userName + AppConstants.ResponseMessages.LoggedInSuccessfully,
-                                    token = token
-                                });
-                            }
-                            return BadRequest(AppConstants.ResponseMessages.LoginFailed);
-                        }
-                        else
+                        var token = GenerateToken.CreateToken(claims);
+                        return StatusCode(200, new
                         {
-                            return BadRequest(AppConstants.ResponseMessages.LoginFailed);
-                        }
-
-
+                            data = claims,
+                            txt = AppConstants.DBResponse.Success,
+                            message = $"{claims.userName} {AppConstants.ResponseMessages.LoggedInSuccessfully}",
+                            token
+                        });
+                    }
+                    else
+                    {
+                        return message switch
+                        {
+                            AppConstants.DBResponse.InvalidCredentials => BadRequest(AppConstants.ResponseMessages.InvalidUserCredentials),
+                            AppConstants.DBResponse.UserNotFound => BadRequest(AppConstants.ResponseMessages.UserNotFound),
+                            _ => BadRequest(AppConstants.ResponseMessages.LoginFailed)
+                        };
                     }
                 }
+                return BadRequest(AppConstants.ResponseMessages.LoginFailed);
             }
         }
     }
