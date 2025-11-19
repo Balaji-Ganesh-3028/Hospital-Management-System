@@ -1,4 +1,5 @@
-﻿using backend.CustomAttributes;
+﻿using backend.Constants;
+using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
 using DataAccessLayer.Models;
@@ -22,13 +23,13 @@ namespace backend.Controllers
         public async Task<IActionResult> InsertAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.InsertAppointment(appointment);
-            if(result == "Success")
+            if(result == AppConstants.ResponseMessages.Success )
             {
-                return Ok("Doctor Apponitment fixed");
+                return Ok(AppConstants.ResponseMessages.DoctorAppointmentFixed);
             }
             else
             {
-                return BadRequest("Something went worng!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
@@ -37,13 +38,13 @@ namespace backend.Controllers
         public async Task<IActionResult> UpdateAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.UpdateAppointment(appointment);
-            if (result == "Success")
+            if (result == AppConstants.ResponseMessages.Success)
             {
-                return Ok("Doctor Apponitment updated");
+                return Ok(AppConstants.ResponseMessages.DoctorAppointmentUpdates);
             }
             else
             {
-                return BadRequest("Something went worng!!!");
+                return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
             }
         }
 
