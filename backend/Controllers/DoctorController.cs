@@ -1,6 +1,7 @@
 ﻿using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,13 +39,13 @@ namespace backend.Controllers
         {
             if (doctorDetails == null)
             {
-                return BadRequest("Doctor details required");
+                return BadRequest(AppConstants.ResponseMessages.DoctorDetailsRequired);
             }
 
             var result = await _doctorBL.InsertDoctorDetails(doctorDetails);
 
-            if (result == "Success") return Ok("Details added successfully");
-            else return BadRequest("Something went wrong!!!");
+            if (result == AppConstants.DBResponse.Success) return Ok(AppConstants.ResponseMessages.DoctorDetailsAddedSuccessfully);
+            else return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
         }
 
         [HttpPut]
@@ -53,13 +54,13 @@ namespace backend.Controllers
         {
             if (doctorDetails == null)
             {
-                return BadRequest("Doctor details required");
+                return BadRequest(AppConstants.ResponseMessages.DoctorDetailsRequired);
             }
 
             var result = await _doctorBL.UpdateDoctorDetails(doctorDetails);
 
-            if (result == "Success") return Ok("Details updated successfully");
-            else return BadRequest("Something went wrong!!!");
+            if (result == AppConstants.DBResponse.Success) return Ok(AppConstants.ResponseMessages.DoctorDetailsUpdatedSuccessfully);
+            else return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
         }
 
     }

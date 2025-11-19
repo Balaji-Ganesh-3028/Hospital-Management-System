@@ -1,5 +1,6 @@
 ﻿using backend.models;
 using backend.utilities;
+using Constant.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -38,7 +39,7 @@ namespace backend.Controllers
                         {
                             if (reader.HasRows)
                             {
-                                if (reader.Read() && reader["message"].ToString() == "Login successful")
+                                if (reader.Read() && reader["message"].ToString() == AppConstants.DBResponse.LoginSuccessful)
                                 {
                                     var userName = reader["userName"].ToString();
                                     var claims = new ClaimsItems
@@ -56,17 +57,17 @@ namespace backend.Controllers
                                     return StatusCode(200, new
                                     {
                                         data = claims,
-                                        txt = "Success",
-                                        message = userName + " logged in successfully.",
+                                        txt = AppConstants.DBResponse.Success,
+                                        message = userName + AppConstants.ResponseMessages.LoggedInSuccessfully,
                                         token = token
                                     });
                                 }
-                                return BadRequest("Login failed, Something went wrong!!");
+                                return BadRequest(AppConstants.ResponseMessages.LoginFailed);
                             }
                             else
                             {
                                 Console.WriteLine("No rows found.");
-                                return BadRequest("Login failed, Something went wrong!!");
+                                return BadRequest(AppConstants.ResponseMessages.LoginFailed);
                             }
 
 

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Interface;
+﻿using Constant.Constants;
+using DataAccessLayer.Interface;
 using DataAccessLayer.models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -34,11 +35,11 @@ namespace DataAccessLayer.Implementation
 
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
-                            if (reader.Read() && reader["message"].ToString() == "Registered")
+                            if (reader.Read() && reader["message"]?.ToString() == "Registered")
                             {
-                                return "Success";
+                                return AppConstants.DBResponse.Success;
                             }
-                            return "Failed";
+                            return AppConstants.DBResponse.Failed;
                         }
                     }
 
@@ -46,11 +47,11 @@ namespace DataAccessLayer.Implementation
             }
             catch (SqlException sqlEx)
             {
-                return "Database error: " + sqlEx.Message;
+                return AppConstants.ResponseMessages.DatabaseError + sqlEx.Message;
             }
             catch (Exception ex)
             {
-                return "Internal server error: " + ex.Message;
+                return AppConstants.ResponseMessages.InternalServerError + ex.Message;
             }
         }
     }

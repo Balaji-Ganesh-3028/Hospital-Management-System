@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Interface;
+﻿using Constant.Constants;
+using DataAccessLayer.Interface;
 using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -90,17 +91,17 @@ namespace DataAccessLayer.Implementation
 
                         sqlTransaction.Commit();
 
-                        return "Success";
+                        return AppConstants.DBResponse.Success;
 
                     } catch (SqlException sqlEx)
                     {
                         sqlTransaction.Rollback();
-                        return "Database error: " + sqlEx.Message;
+                        return AppConstants.ResponseMessages.DatabaseError + sqlEx.Message;
                     }
 
                 }
             } catch (Exception ex) {
-                return "Failed: " + ex.Message;
+                return AppConstants.ResponseMessages.InternalServerError + ex.Message;
             }
         }
 
@@ -150,7 +151,7 @@ namespace DataAccessLayer.Implementation
         {
             if (userId <= 0)
             {
-                return new { message = "Invalid user ID." };
+                return new { message = AppConstants.ResponseMessages.UserIdRequired };
             }
 
             try
@@ -195,7 +196,7 @@ namespace DataAccessLayer.Implementation
                             }
                             else
                             {
-                                return new { message = "User not found." };
+                                return new { message = AppConstants.ResponseMessages.UserNotFound };
                             }
                         }
                     }
@@ -204,12 +205,12 @@ namespace DataAccessLayer.Implementation
             catch (SqlException ex)
             {
                 // Log exception here (e.g., using ILogger or custom logging)
-                return new { message = "Database error occurred.", error = ex.Message };
+                return new { message = AppConstants.ResponseMessages.DatabaseError, error = ex.Message };
             }
             catch (Exception ex)
             {
                 // Log exception here
-                return new { message = "An unexpected error occurred.", error = ex.Message };
+                return new { message = AppConstants.ResponseMessages.UnExpectedError, error = ex.Message };
             }
         }
 
@@ -229,12 +230,12 @@ namespace DataAccessLayer.Implementation
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read() && reader["Message"].ToString() == "Success")
+                            if (reader.Read() && reader["Message"].ToString() == AppConstants.DBResponse.Success)
                             {
-                                return "Success";
+                                return AppConstants.DBResponse.Success;
                             } else
                             {
-                                return "User record not deleted";
+                                return AppConstants.ResponseMessages.UserDeletionFfailed;
                             }
                         }
                     }
@@ -242,7 +243,7 @@ namespace DataAccessLayer.Implementation
                     
             } catch (Exception ex)
             {
-                return "Internal server error: " + ex.Message;
+                return AppConstants.ResponseMessages.InternalServerError + ex.Message;
             }
         }
     }

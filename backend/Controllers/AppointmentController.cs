@@ -1,7 +1,7 @@
-﻿using backend.Constants;
-using backend.CustomAttributes;
+﻿using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
+using Constant.Constants;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +23,7 @@ namespace backend.Controllers
         public async Task<IActionResult> InsertAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.InsertAppointment(appointment);
-            if(result == AppConstants.ResponseMessages.Success )
+            if(result == AppConstants.DBResponse.Success )
             {
                 return Ok(AppConstants.ResponseMessages.DoctorAppointmentFixed);
             }
@@ -38,7 +38,7 @@ namespace backend.Controllers
         public async Task<IActionResult> UpdateAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.UpdateAppointment(appointment);
-            if (result == AppConstants.ResponseMessages.Success)
+            if (result == AppConstants.DBResponse.Success)
             {
                 return Ok(AppConstants.ResponseMessages.DoctorAppointmentUpdates);
             }

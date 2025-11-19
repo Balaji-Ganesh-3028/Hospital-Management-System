@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Interface;
+﻿using Constant.Constants;
+using DataAccessLayer.Interface;
 using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -138,11 +139,11 @@ namespace DataAccessLayer.Implementation
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
                     if (rowsAffected > 0)
                     {
-                        return "Success";
+                        return AppConstants.DBResponse.Success;
                     }
                     else
                     {
-                        return "Failed";
+                        return AppConstants.DBResponse.Failed;
                     }
                 };
             };
