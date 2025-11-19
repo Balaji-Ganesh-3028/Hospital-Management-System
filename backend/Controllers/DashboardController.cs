@@ -1,4 +1,5 @@
-﻿using backend.CustomAttributes;
+﻿using backend.Constants;
+using backend.CustomAttributes;
 using backend.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -47,7 +48,7 @@ namespace backend.Controllers
                             return Ok(data);
                         } else
                         {
-                            return BadRequest("Something went wrong!!!");
+                            return BadRequest(AppConstants.ResponseMessages.SomethingWentWrong);
                         }
                     }
                 }
