@@ -36,13 +36,13 @@ BEGIN
   WHERE email = @email)
   
   BEGIN
-    SELECT @email AS Email, 'Mismatch' AS message;
+    SELECT @email AS Email, 'Invalid credentials' AS message;
   END
   
   -- If email is not found 
   ELSE
   BEGIN
-    SELECT @email AS Email, 'NotFound' AS message;
+    SELECT @email AS Email, 'User not found' AS message;
   END
 END;
 
