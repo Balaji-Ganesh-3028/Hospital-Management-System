@@ -46,4 +46,4 @@ BEGIN
   END
 END;
 
-EXEC sp_login 'balaji@gmail.com', 'Admin@123';
+EXEC sp_login 'balaji.admin@gmail.com', 'Admin@123';

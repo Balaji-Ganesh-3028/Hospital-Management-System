@@ -1,6 +1,7 @@
-﻿using BusinessLayer.Interface;
+﻿using backend.CustomAttributes;
+using backend.Enum;
+using BusinessLayer.Interface;
 using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -16,7 +17,8 @@ namespace backend.Controllers
             _appointmentBL = appointmentBL;
         }
 
-        [HttpPost("")]
+        [HttpPost]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> InsertAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.InsertAppointment(appointment);
@@ -30,7 +32,8 @@ namespace backend.Controllers
             }
         }
 
-        [HttpPut("")]
+        [HttpPut]
+        [CustomAuth(Roles.Admin, Roles.Doctor)]
         public async Task<IActionResult> UpdateAppointment(Appointment appointment)
         {
             var result = await _appointmentBL.UpdateAppointment(appointment);
@@ -44,7 +47,8 @@ namespace backend.Controllers
             }
         }
 
-        [HttpGet("")]
+        [HttpGet]
+        [CustomAuth(Roles.Admin, Roles.Doctor, Roles.Patient, Roles.FrontDesk)]
         public async Task<IActionResult> GetAllAppointments()
         {
             var result = await _appointmentBL.GetAllAppointmentDetails();
@@ -52,6 +56,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("{appointmentId}")]
+        [CustomAuth(Roles.Admin, Roles.Doctor, Roles.Patient, Roles.FrontDesk)]
         public async Task<IActionResult> GetAppointment(int appointmentId)
         {
             var result = await _appointmentBL.GetAppointmentDetail(appointmentId);
