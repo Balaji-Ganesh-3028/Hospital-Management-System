@@ -2,8 +2,8 @@ CREATE OR ALTER PROCEDURE sp_update_doctor_details(
   @UserId INT ,
   @dateOfAssociation DATE,
   @licenseNumber NVARCHAR(100),
-  @qualification VARCHAR(500),
-  @specialisation VARCHAR(500),
+  @qualification INT,
+  @specialisation INT,
   @designation INT,
   @experienceYears INT,
   @updatedAt DATETIME = NULL,
@@ -68,11 +68,11 @@ BEGIN
 END;
 
 EXEC sp_update_doctor_details
-  @UserId = 2,
+  @UserId = 23,
   @DateOfAssociation = '2024-01-15',
-  @licenseNumber = 3005,
+  @licenseNumber = "LIN3005",
   @qualification = 3036,
   @specialisation = 3016,
   @designation = 3060,
-  @experienceYears = 5,
+  @experienceYears = 500,
   @CreatedBy = 'admin@gmail.com';

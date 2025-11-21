@@ -111,6 +111,12 @@ CREATE TABLE DoctorDetails
   UpdatedBy NVARCHAR(255) NOT NULL DEFAULT 'SYSTEM'
 );
 
+ALTER TABLE DoctorDetails
+ALTER COLUMN Qualification INT NOT NULL
+
+ALTER TABLE DoctorDetails
+ALTER COLUMN Specialisation INT NOT NULL;
+
 
 --Appointment Directory Table
 -- Store appointment information
@@ -278,7 +284,7 @@ VALUES
 
 -- SELECT QUERIES
 SELECT *
-FROM UserDirectory;
+FROM UserDirectory
 
 SELECT *
 FROM UserProfile;

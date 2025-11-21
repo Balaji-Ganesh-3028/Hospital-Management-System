@@ -27,6 +27,7 @@ BEGIN
     pd.Id AS PatientId,
     pd.UserId,
     pd.BloodGroup,
+    mdbg.Name AS BloodGroupName,
     pd.DOJ,
     pd.Allergies,
     pd.ChronicDiseases,
@@ -39,6 +40,7 @@ BEGIN
     INNER JOIN PatientDetails AS pd ON pd.UserId = ud.Id
     INNER JOIN UserProfile AS up ON up.UserId = ud.Id
     INNER JOIN UserContactDetails AS ucd ON ucd.UserId = ud.Id
+    INNER JOIN MasterData AS mdbg ON mdbg.Id = pd.BloodGroup
   WHERE ud.Id = @UserId;
 END;
 
