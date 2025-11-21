@@ -1,4 +1,4 @@
-﻿namespace backend.models
+﻿namespace AppModels.Models
 {
     public class ClaimsItems
     {

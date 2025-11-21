@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Interface;
+﻿using AppModels.RequestModels;
+using BusinessLayer.Interface;
 using Constant.Constants;
-using DataAccessLayer.models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

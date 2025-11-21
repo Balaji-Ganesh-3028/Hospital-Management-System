@@ -1,7 +1,8 @@
 ﻿
+using AppModels.Models;
+using AppModels.RequestModels;
 using BusinessLayer.Interface;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models;
 
 namespace BusinessLayer.Implementation
 {
@@ -12,12 +13,12 @@ namespace BusinessLayer.Implementation
         {
             _userProfileDal = userProfileDAL;
         }
-        public async Task<string> UserProfileUpdate(UserProfile userProfile)
+        public async Task<string> UserProfileUpdate(UserProfileRequest userProfile)
         {
             return await _userProfileDal.UserProfileUpdate(userProfile);
         }
 
-        public async Task<string> UserProfile(UserProfile userProfile)
+        public async Task<string> UserProfile(UserProfileRequest userProfile)
         {
             return await _userProfileDal.UserProfileUpdate(userProfile);
         }

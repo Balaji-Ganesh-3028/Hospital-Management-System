@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Models;
+﻿using AppModels.Models;
+using AppModels.ResponseModels;
 namespace DataAccessLayer.Interface
 {
     public interface IAppointmentDAL

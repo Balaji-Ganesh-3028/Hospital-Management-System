@@ -1,6 +1,7 @@
-﻿using Constant.Constants;
+﻿using AppModels.Models;
+using AppModels.ResponseModels;
+using Constant.Constants;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -35,22 +36,29 @@ namespace DataAccessLayer.Implementation
                         {
                             var appointment = new AppointmentDetailsResponse
                             {
-                                AppointmentId = reader["AppointmentId"] as int? ?? 0,
-                                AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
-                                PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
-                                PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
-                                IllnessOrDisease = reader["IllnessOrDisease"] as string,
-                                ProceduresOrMedication = reader["ProceduresOrMedication"] as string,
-                                CurrentStatus = reader["CurrentStatus"] as int? ?? 0,
-                                Status = reader["Status"] as string,
-
-                                PatientId = reader["PatientId"] as int? ?? 0,
-                                PatientFirstName = reader["PatientFirstName"] as string,
-                                PatientLastName = reader["PatientLastName"] as string,
-
-                                DoctorId = reader["DoctorId"] as int? ?? 0,
-                                DoctorFirstName = reader["DoctorFirstName"] as string,
-                                DoctorLastName = reader["DoctorLastName"] as string,
+                                AppointmentDetails = new AppointmentDetailsInfo
+                                {
+                                    AppointmentId = reader["AppointmentId"] as int? ?? 0,
+                                    AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
+                                    PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
+                                    PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
+                                    IllnessOrDisease = reader["IllnessOrDisease"] as string,
+                                    ProceduresOrMedication = reader["ProceduresOrMedication"] as string,
+                                    CurrentStatus = reader["CurrentStatus"] as int? ?? 0,
+                                    Status = reader["Status"] as string,
+                                },
+                                PatientInfo = new PatientInfo
+                                {
+                                    PatientId = reader["PatientId"] as int? ?? 0,
+                                    PatientFirstName = reader["PatientFirstName"] as string,
+                                    PatientLastName = reader["PatientLastName"] as string,
+                                },
+                                DoctorInfo = new DoctorInfo
+                                {
+                                    DoctorId = reader["DoctorId"] as int? ?? 0,
+                                    DoctorFirstName = reader["DoctorFirstName"] as string,
+                                    DoctorLastName = reader["DoctorLastName"] as string,
+                                }
                             };
 
                             appointmentList.Add(appointment);
@@ -79,26 +87,34 @@ namespace DataAccessLayer.Implementation
                         {
                             return new AppointmentDetailsResponse
                             {
-                                AppointmentId = reader["AppointmentId"] as int? ?? 0,
-                                AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
-                                PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
-                                PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
-                                IllnessOrDisease = reader["IllnessOrDisease"] as string,
-                                ProceduresOrMedication = reader["ProceduresOrMedication"] as string,
-                                CurrentStatus = reader["CurrentStatus"] as int? ?? 0,
-                                Status = reader["Status"] as string,
+                                AppointmentDetails = new AppointmentDetailsInfo
+                                {
+                                    AppointmentId = reader["AppointmentId"] as int? ?? 0,
+                                    AppointmentDate = DateOnly.FromDateTime((DateTime)reader["AppointmentDate"]),
+                                    PurposeOfVisitName = reader["PurposeOfVisitName"] as string,
+                                    PurposeOfVisit = reader["PurposeOfVisit"] as int? ?? 0,
+                                    IllnessOrDisease = reader["IllnessOrDisease"] as string,
+                                    ProceduresOrMedication = reader["ProceduresOrMedication"] as string,
+                                    CurrentStatus = reader["CurrentStatus"] as int? ?? 0,
+                                    Status = reader["Status"] as string,
+                                },
 
+                                PatientInfo = new PatientInfo
+                                {
+                                    PatientId = reader["PatientId"] as int? ?? 0,
+                                    PatientFirstName = reader["PatientFirstName"] as string,
+                                    PatientLastName = reader["PatientLastName"] as string,
+                                    PatientBloodGroup = reader["BloodGroupName"] as string ?? ""
+                                },
 
-                                PatientId = reader["PatientId"] as int? ?? 0,
-                                PatientFirstName = reader["PatientFirstName"] as string,
-                                PatientLastName = reader["PatientLastName"] as string,
-                                PatientBloodGroup = reader["BloodGroupName"] as string ?? "",
-
-                                DoctorId = reader["DoctorId"] as int? ?? 0,
-                                DoctorFirstName = reader["DoctorFirstName"] as string,
-                                DoctorLastName = reader["DoctorLastName"] as string,
-                                Specialization = reader["Specialisation"] as string,
-                                Designation = reader["Designation"] as string
+                                DoctorInfo = new DoctorInfo
+                                {
+                                    DoctorId = reader["DoctorId"] as int? ?? 0,
+                                    DoctorFirstName = reader["DoctorFirstName"] as string,
+                                    DoctorLastName = reader["DoctorLastName"] as string,
+                                    Specialization = reader["Specialisation"] as string,
+                                    Designation = reader["Designation"] as string
+                                }
                             };
                         }
                     }

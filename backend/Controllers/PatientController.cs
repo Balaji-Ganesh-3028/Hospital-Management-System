@@ -1,8 +1,8 @@
-﻿using backend.CustomAttributes;
+﻿using AppModels.Models;
+using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
 using Constant.Constants;
-using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers

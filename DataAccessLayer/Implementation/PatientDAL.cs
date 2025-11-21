@@ -1,6 +1,7 @@
-﻿using Constant.Constants;
+﻿using AppModels.Models;
+using AppModels.Views;
+using Constant.Constants;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -87,27 +88,27 @@ namespace DataAccessLayer.Implementation
                     {
                         while (await reader.ReadAsync())
                         {
-                            patientList.Add(new
+                            patientList.Add(new PatientInfoView
                             {
-                                email = reader["Email"],
-                                id = reader["UserId"],
-                                userName = reader["UserName"],
-                                firstName = reader["Firstname"],
-                                lastName = reader["Lastname"],
-                                gender = reader["Gender"],
-                                age = reader["age"],
-                                phoneNumber = reader["PhoneNumber"],
-                                bloodGroup = reader["BloodGroup"],
-                                bloodGroupName = reader["BloodGroupName"],
-                                patientId = reader["PatientId"],
-                                DOJ = reader["DOJ"],
-                                allergies = reader["Allergies"],
-                                chronicDiseases = reader["ChronicDiseases"],
-                                emergencyContactName = reader["EmergencyContactName"],
-                                emergencyContactNumber = reader["EmergencyContactNumber"],
-                                insuranceProvider = reader["InsuranceProvider"],
-                                insuranceNumber = reader["InsuranceNumber"],
-                                medicalHistoryNotes = reader["MedicalHistoryNotes"]
+                                Email = reader["Email"] as string ?? "",
+                                Id = reader["UserId"] as int? ?? 0,
+                                UserName = reader["UserName"] as string ?? "",
+                                FirstName = reader["Firstname"] as string ?? "",
+                                LastName = reader["Lastname"] as string ?? "",
+                                Gender = reader["Gender"] as int? ?? 0,
+                                Age = reader["age"] as int? ?? 0,
+                                PhoneNumber = reader["PhoneNumber"] as string ?? "",
+                                BloodGroup = reader["BloodGroup"] as int? ?? 0,
+                                BloodGroupName = reader["BloodGroupName"] as string ?? "",
+                                PatientId = reader["PatientId"] as int? ?? 0,
+                                DOJ = DateOnly.FromDateTime((DateTime)reader["DOJ"]),
+                                Allergies = reader["Allergies"] as string ?? "",
+                                ChronicDiseases = reader["ChronicDiseases"] as string ?? "",
+                                EmergencyContactName = reader["EmergencyContactName"] as string ?? "",
+                                EmergencyContactNumber = reader["EmergencyContactNumber"] as string ?? "",
+                                InsuranceProvider = reader["InsuranceProvider"] as string ?? "",
+                                InsuranceNumber = reader["InsuranceNumber"] as string ?? "",
+                                MedicalHistoryNotes = reader["MedicalHistoryNotes"] as string ?? ""
                             });
                         }
 
@@ -135,25 +136,27 @@ namespace DataAccessLayer.Implementation
                     {
                         if (await reader.ReadAsync())
                         {
-                            return new
+                            return new PatientInfoView
                             {
-                                email = reader["Email"],
-                                id = reader["UserId"],
-                                userName = reader["UserName"],
-                                firstName = reader["Firstname"],
-                                lastName = reader["Lastname"],
-                                gender = reader["Gender"],
-                                age = reader["age"],
-                                phoneNumber = reader["PhoneNumber"],
-                                bloodGroup = reader["BloodGroup"],
-                                DOJ = reader["DOJ"],
-                                allergies = reader["Allergies"],
-                                chronicDiseases = reader["ChronicDiseases"],
-                                emergencyContactName = reader["EmergencyContactName"],
-                                emergencyContactNumber = reader["EmergencyContactNumber"],
-                                insuranceProvider = reader["InsuranceProvider"],
-                                insuranceNumber = reader["InsuranceNumber"],
-                                medicalHistoryNotes = reader["MedicalHistoryNotes"]
+                                Email = reader["Email"] as string ?? "",
+                                Id = reader["UserId"] as int? ?? 0,
+                                UserName = reader["UserName"] as string ?? "",
+                                FirstName = reader["Firstname"] as string ?? "",
+                                LastName = reader["Lastname"] as string ?? "",
+                                Gender = reader["Gender"] as int? ?? 0,
+                                Age = reader["age"] as int? ?? 0,
+                                PhoneNumber = reader["PhoneNumber"] as string ?? "",
+                                BloodGroup = reader["BloodGroup"] as int? ?? 0,
+                                BloodGroupName = reader["BloodGroupName"] as string ?? "",
+                                PatientId = reader["PatientId"] as int? ?? 0,
+                                DOJ = DateOnly.FromDateTime((DateTime)reader["DOJ"]),
+                                Allergies = reader["Allergies"] as string ?? "",
+                                ChronicDiseases = reader["ChronicDiseases"] as string ?? "",
+                                EmergencyContactName = reader["EmergencyContactName"] as string ?? "",
+                                EmergencyContactNumber = reader["EmergencyContactNumber"] as string ?? "",
+                                InsuranceProvider = reader["InsuranceProvider"] as string ?? "",
+                                InsuranceNumber = reader["InsuranceNumber"] as string ?? "",
+                                MedicalHistoryNotes = reader["MedicalHistoryNotes"] as string ?? ""
                             };
                         }
 

@@ -20,8 +20,8 @@ namespace backend.Middleware
             }
             catch(Exception ex) {
                 var result = exceptionMessage(context, ex);
-                context.Response.StatusCode = Convert.ToInt16(HttpStatusCode.Unauthorized);
-                context.Response.ContentType = result;
+                //context.Response.StatusCode = Convert.ToInt16(HttpStatusCode.Unauthorized);
+                await context.Response.WriteAsync(result);
             }
         }
 

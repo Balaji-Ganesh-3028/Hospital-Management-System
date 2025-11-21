@@ -1,6 +1,8 @@
-﻿namespace DataAccessLayer.Models
+﻿using AppModels.Models;
+
+namespace AppModels.RequestModels
 {
-    public class UserProfile
+    public class UserProfileRequest
     {
         public UserDetails UserDetails { get; set; }
         public ContactDetails ContactDetails { get; set; }

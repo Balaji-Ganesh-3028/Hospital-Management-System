@@ -1,9 +1,9 @@
-﻿namespace DataAccessLayer.Models
+﻿namespace AppModels.Models
 {
     public class UserDetails
     {
         public int UserId { get; set; }
-        public string FristName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateOnly DOB { get; set; }
         public int Gender { get; set; }

@@ -1,6 +1,6 @@
-﻿using Constant.Constants;
+﻿using AppModels.RequestModels;
+using Constant.Constants;
 using DataAccessLayer.Interface;
-using DataAccessLayer.models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;

@@ -1,8 +1,9 @@
-﻿using backend.CustomAttributes;
+﻿using AppModels.Models;
+using AppModels.RequestModels;
+using backend.CustomAttributes;
 using backend.Enum;
 using BusinessLayer.Interface;
 using Constant.Constants;
-using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -19,7 +20,7 @@ namespace backend.Controllers
 
         [HttpPost]
         [CustomAuth(Roles.Patient, Roles.Doctor, Roles.Admin)]
-        public async Task<IActionResult> UserProfile([FromBody] UserProfile userProfile)
+        public async Task<IActionResult> UserProfile([FromBody] UserProfileRequest userProfile)
         {
             // IF USER PROFILE IS EMPTY
             if (userProfile == null)
@@ -39,7 +40,7 @@ namespace backend.Controllers
 
         [HttpPut]
         [CustomAuth(Roles.Patient, Roles.Doctor, Roles.Admin)]
-        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfile userProfile)
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfileRequest userProfile)
         {
             // IF USER PROFILE IS EMPTY
             if (userProfile == null)

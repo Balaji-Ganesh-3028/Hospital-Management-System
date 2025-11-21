@@ -2,7 +2,7 @@
 using backend.Enum;
 using BusinessLayer.Interface;
 using Constant.Constants;
-using DataAccessLayer.Models;
+using AppModels.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers

@@ -1,6 +1,8 @@
-﻿using Constant.Constants;
+﻿using AppModels.Models;
+using AppModels.RequestModels;
+using AppModels.Views;
+using Constant.Constants;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -18,7 +20,7 @@ namespace DataAccessLayer.Implementation
             _dbConnectionString = _connectionString["ConnectionStrings:DB"];
         }
 
-        public async Task<string> UserProfileUpdate(UserProfile userProfile)
+        public async Task<string> UserProfileUpdate(UserProfileRequest userProfile)
         {
             var userId = 0;
 
@@ -36,7 +38,7 @@ namespace DataAccessLayer.Implementation
                         userProfileCmd.CommandType = CommandType.StoredProcedure;
 
                         userProfileCmd.Parameters.AddWithValue("@userId", userProfile.UserDetails.UserId);
-                        userProfileCmd.Parameters.AddWithValue("@firstName", userProfile.UserDetails.FristName);
+                        userProfileCmd.Parameters.AddWithValue("@firstName", userProfile.UserDetails.FirstName);
                         userProfileCmd.Parameters.AddWithValue("@lastName", userProfile.UserDetails.LastName);
                         userProfileCmd.Parameters.AddWithValue("@gender", userProfile.UserDetails.Gender);
                         userProfileCmd.Parameters.AddWithValue("@age", userProfile.UserDetails.Age);
@@ -76,13 +78,13 @@ namespace DataAccessLayer.Implementation
                         // IF CREATEBY IS NOT EMPTY THEN ADD PARAMETER
                         if (userProfile.UserDetails.CreatedBy != string.Empty)
                         {
-                            contactInfoCmd.Parameters.AddWithValue("@createdBy", userProfile.ContactDetails.CreatedBy);
+                            contactInfoCmd.Parameters.AddWithValue("@createdBy", userProfile.UserDetails.CreatedBy);
                         }
 
                         // IF UPDATEBY IS NOT EMPTY THEN ADD PARAMETER
-                        if (userProfile.ContactDetails.UpdatedBy != string.Empty)
+                        if (userProfile.UserDetails.UpdatedBy != string.Empty)
                         {
-                            contactInfoCmd.Parameters.AddWithValue("@updatedBy", userProfile.ContactDetails.UpdatedBy);
+                            contactInfoCmd.Parameters.AddWithValue("@updatedBy", userProfile.UserDetails.UpdatedBy);
                         }
 
                         int rowsAffected = await contactInfoCmd.ExecuteNonQueryAsync();
@@ -123,16 +125,16 @@ namespace DataAccessLayer.Implementation
                     {
                         while (await reader.ReadAsync())
                         {
-                            userList.Add(new
+                            userList.Add(new UserDetailInfoView
                             {
-                                userId = reader.GetInt32(0),
-                                email = reader.GetString("email"),
-                                firstName = reader.GetString("firstname"),
-                                lastName = reader.GetString("lastname"),
-                                gender = reader.GetInt32(4),
-                                phoneNumber = reader.GetString("phoneNumber"),
-                                userType = reader.GetString("userType"),
-                                total = reader["TotalCount"]
+                                UserId = reader.GetInt32(0),
+                                Email = reader.GetString("email"),
+                                FirstName = reader.GetString("firstname"),
+                                LastName = reader.GetString("lastname"),
+                                Gender = reader.GetInt32(4),
+                                PhoneNumber = reader.GetString("phoneNumber"),
+                                UserType = reader.GetString("userType"),
+                                Total = reader["TotalCount"] as int? ?? 0
                             });
                         }
 

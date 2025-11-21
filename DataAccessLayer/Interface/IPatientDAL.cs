@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Models;
+﻿using AppModels.Models;
 
 namespace DataAccessLayer.Interface
 {

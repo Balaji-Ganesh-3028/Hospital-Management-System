@@ -1,6 +1,7 @@
-﻿using Constant.Constants;
+﻿using AppModels.Models;
+using AppModels.Views;
+using Constant.Constants;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -32,26 +33,26 @@ namespace DataAccessLayer.Implementation
                     {
                         while (await reader.ReadAsync())
                         {
-                            doctorList.Add(new
+                            doctorList.Add(new DoctorInfoView
                             {
-                                email = reader["Email"],
-                                id = reader["UserId"],
-                                userName = reader["UserName"],
-                                firstName = reader["Firstname"],
-                                lastName = reader["Lastname"],
-                                gender = reader["Gender"],
-                                age = reader["age"],
-                                phoneNumber = reader["PhoneNumber"],
-                                doctorId = reader["DoctorId"],
-                                dateOfAssociation = reader["DateOfAssociation"],
-                                licenseNumber = reader["LicenseNumber"],
-                                qualification = reader["Qualification"],
-                                qualificationName = reader["QualificationName"],
-                                specialisation = reader["Specialisation"],
-                                specialisationName = reader["SpecialisationName"],
-                                designation = reader["Designation"],
-                                designationName = reader["DesignationName"],
-                                experienceYears = reader["ExperienceYears"]
+                                Email = reader["Email"] as string ?? "",
+                                Id = reader["UserId"] as int? ?? 0,
+                                UserName = reader["UserName"] as string ?? "",
+                                FirstName = reader["Firstname"] as string ?? "",
+                                LastName = reader["Lastname"] as string ?? "",
+                                Gender = reader["Gender"] as int? ?? 0,
+                                Age = reader["age"] as int? ?? 0,
+                                PhoneNumber = reader["PhoneNumber"] as string ?? "",
+                                DoctorId = reader["DoctorId"] as int? ?? 0,
+                                DateOfAssociation = DateOnly.FromDateTime((DateTime)reader["DateOfAssociation"]),
+                                LicenseNumber = reader["LicenseNumber"] as string ?? "",
+                                Qualification = (int)reader["Qualification"],
+                                QualificationName = reader["QualificationName"] as string ?? "",
+                                Specialization = reader["Specialisation"] as int? ?? 0,
+                                SpecializationName = reader["SpecialisationName"] as string ?? "",
+                                Designation = reader["Designation"] as int? ?? 0,
+                                DesignationName = reader["DesignationName"] as string ?? "",
+                                Experience = reader["ExperienceYears"] as int? ?? 0
                             });
 
                         }
@@ -78,29 +79,31 @@ namespace DataAccessLayer.Implementation
 
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (await reader.ReadAsync())
+                        if (!await reader.ReadAsync())
+                            return null;
+                        
+                        return new DoctorInfoView
                         {
-                            return new
-                            {
-                                email = reader["Email"],
-                                id = reader["UserId"],
-                                userName = reader["UserName"],
-                                firstName = reader["Firstname"],
-                                lastName = reader["Lastname"],
-                                gender = reader["Gender"],
-                                age = reader["age"],
-                                phoneNumber = reader["PhoneNumber"],
-                                dateOfAssociation = reader["DateOfAssociation"],
-                                licenseNumber = reader["LicenseNumber"],
-                                qualification = reader["Qualification"],
-                                specialisation = reader["Specialisation"],
-                                designation = reader["Designation"],
-                                experienceYears = reader["ExperienceYears"]
-                            };
-                        }
-
-                        // Return null if doctor not found
-                        return null;
+                            Email = (string)reader["Email"],
+                            Id = reader["UserId"] as int? ?? 0,
+                            UserId = reader["UserId"] as int? ?? 0,
+                            UserName = reader["UserName"] as string ?? "",
+                            FirstName = reader["Firstname"] as string ?? "",
+                            LastName = reader["Lastname"] as string ?? "",
+                            Gender = reader["Gender"] as int? ?? 0,
+                            Age = reader["Age"] as int? ?? 0,
+                            PhoneNumber = reader["PhoneNumber"] as string ?? "",
+                            DoctorId = reader["DoctorId"] as int? ?? 0,
+                            DateOfAssociation = DateOnly.FromDateTime((DateTime)reader["DateOfAssociation"]),
+                            LicenseNumber = reader["LicenseNumber"] as string ?? "",
+                            Qualification = (int)reader["Qualification"],
+                            QualificationName = reader["QualificationName"] as string ?? "",
+                            Specialization = (int)reader["Specialisation"],
+                            SpecializationName = reader["SpecialisationName"] as string ?? "",
+                            Designation = reader["Designation"] as int? ?? 0,
+                            DesignationName = reader["DesignationName"] as string ?? "",
+                            Experience = reader["ExperienceYears"] as int? ?? 0
+                        };
                     }
                 }
             }
@@ -117,12 +120,12 @@ namespace DataAccessLayer.Implementation
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("UserId", doctorDetails.UserId);
-                    cmd.Parameters.AddWithValue("@DateOfAssociation", doctorDetails.DateOfAssociation);
+                    cmd.Parameters.AddWithValue("@dateOfAssociation", doctorDetails.DateOfAssociation);
                     cmd.Parameters.AddWithValue("@licenseNumber", doctorDetails.LicenseNumber);
                     cmd.Parameters.AddWithValue("@qualification", doctorDetails.Qualification);
-                    cmd.Parameters.AddWithValue("@specialisation", doctorDetails.Specialisation);
+                    cmd.Parameters.AddWithValue("@specialisation", doctorDetails.Specialization);
                     cmd.Parameters.AddWithValue("@designation", doctorDetails.Designation);
-                    cmd.Parameters.AddWithValue("@experienceYears", doctorDetails.ExperienceYears);
+                    cmd.Parameters.AddWithValue("@experienceYears", doctorDetails.Experience);
 
                     // IF CREATEBY IS NOT EMPTY THEN ADD PARAMETER
                     if (doctorDetails.CreatedBy != string.Empty)

@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Interface;
+﻿using AppModels.RequestModels;
+using BusinessLayer.Interface;
 using DataAccessLayer.Interface;
-using DataAccessLayer.models;
 
 namespace BusinessLayer.Implementation
 {

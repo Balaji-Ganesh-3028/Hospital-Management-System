@@ -914,10 +914,21 @@
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
       },
+      "AppModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AppModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AppModels.dll": {}
+        }
+      },
       "BusinessLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "AppModels": "1.0.0",
           "DataAccessLayer": "1.0.0"
         },
         "compile": {
@@ -941,6 +952,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "AppModels": "1.0.0",
           "Constant": "1.0.0",
           "Microsoft.Data.SqlClient": "6.1.2",
           "Microsoft.Extensions.Configuration": "9.0.10",
@@ -2520,6 +2532,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "AppModels/1.0.0": {
+      "type": "project",
+      "path": "../AppModels/AppModels.csproj",
+      "msbuildProject": "../AppModels/AppModels.csproj"
+    },
     "BusinessLayer/1.0.0": {
       "type": "project",
       "path": "../BusinessLayer/BusinessLayer.csproj",
@@ -2538,6 +2555,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AppModels >= 1.0.0",
       "BusinessLayer >= 1.0.0",
       "Constant >= 1.0.0",
       "DataAccessLayer >= 1.0.0",
@@ -2574,6 +2592,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\AppModels.csproj": {
+              "projectPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\AppModels.csproj"
+            },
             "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\BusinessLayer.csproj": {
               "projectPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\BusinessLayer.csproj"
             },

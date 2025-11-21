@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.Models
+﻿namespace AppModels.Models
 {
     public class UserDetailsQuery
     {

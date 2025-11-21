@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.models;
+﻿
+using AppModels.RequestModels;
 
 namespace BusinessLayer.Interface
 {
