@@ -41,7 +41,7 @@ function AppointmentList({ onAddAppointment }: AddAppointmentProps) {
       setFilteredAppointments(appointments);
     } else if (activeTab === 'Today') {
       const today = new Date().toISOString().split('T')[0];
-      const todayAppointments = appointments.filter(appointment => appointment.appointmentDate.split('T')[0] === today);
+      const todayAppointments = appointments.filter(appointment => appointment.appointmentDetails.appointmentDate.split('T')[0] === today);
       setFilteredAppointments(todayAppointments);
     }
   }, [activeTab, appointments]);
@@ -75,17 +75,17 @@ function AppointmentList({ onAddAppointment }: AddAppointmentProps) {
           </thead>
           <tbody>
             {filteredAppointments.map((appointment) => (
-              <tr key={appointment.appointmentId}>
-                <td>{appointment.appointmentId}</td>
-                <td>{appointment.appointmentDate}</td>
-                <td>{appointment.doctorFirstName}</td>
-                <td>{appointment.patientFirstName}</td>
-                <td>{appointment.purposeOfVisitName}</td>
-                <td>{appointment.illnessOrDisease}</td>
-                <td>{appointment.proceduresOrMedication}</td>
-                <td><span className={`status-badge status-${appointment.status.toLowerCase()}`}>{appointment.status}</span></td>
+              <tr key={appointment.appointmentDetails.appointmentId}>
+                <td>{appointment.appointmentDetails.appointmentId}</td>
+                <td>{appointment.appointmentDetails.appointmentDate}</td>
+                <td>{appointment.doctorInfo.doctorFirstName}</td>
+                <td>{appointment.patientInfo.patientFirstName}</td>
+                <td>{appointment.appointmentDetails.purposeOfVisitName}</td>
+                <td>{appointment.appointmentDetails.illnessOrDisease}</td>
+                <td>{appointment.appointmentDetails.proceduresOrMedication}</td>
+                <td><span className={`status-badge status-${appointment.appointmentDetails.status.toLowerCase()}`}>{appointment.appointmentDetails.status}</span></td>
                 <td>
-                  {(appointment.status === 'Scheduled' || appointment.status === 'Rescheduled') && <button className="edit-btn" onClick={() => navigateToAppointmentProfile(appointment.appointmentId)}><i className="fas fa-edit"></i></button>}
+                  {(appointment.appointmentDetails.status === 'Scheduled' || appointment.appointmentDetails.status === 'Rescheduled') && <button className="edit-btn" onClick={() => navigateToAppointmentProfile(appointment.appointmentDetails.appointmentId)}><i className="fas fa-edit"></i></button>}
                   {/* <button className="delete-btn"><i className="fas fa-trash"></i></button> */}
                 </td>
               </tr>

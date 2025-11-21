@@ -52,6 +52,8 @@ function PatientList({ onClickEdit }: PatientListProps) {
             <th>Patient Id</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
             <th>Phone No.</th>
             <th>Blood Group</th>
             {(!isFrontDesk && !isPatient) && (<th>Actions</th>)}
@@ -59,10 +61,12 @@ function PatientList({ onClickEdit }: PatientListProps) {
         </thead>
         <tbody>
           {patients.map((patient) => (
-            <tr key={patient.id}>
+            <tr key={patient.patientId}>
               <td>{patient.id}</td>
               <td>{patient.firstName}</td>
               <td>{patient.lastName}</td>
+              <td>{patient.email}</td>
+              <td>{patient.gender}</td>
               <td>{patient.phoneNumber}</td>
               <td>{patient.bloodGroupName}</td>
               {(!isFrontDesk && !isPatient) && (<td>

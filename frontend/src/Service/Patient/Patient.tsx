@@ -7,15 +7,15 @@ export const GetAllPatients = async (): Promise<PatientDetails[]> => {
 };
 
 export const GetPatient = (id: number) => {
-  return API.get(`api/Patient/${id}`)
+  return API.get(`api/Patient/${id}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
 };
 
 export const InsertPatient = async (data: PatientRequest): Promise<string> => {
-  const response = await API.post('api/Patient', data)
+  const response = await API.post('api/Patient', data, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
   return response?.data
 }
 
 export const UpdatePatient = async (data: PatientRequest): Promise<string> => {
-  const response = await API.put('api/Patient', data)
+  const response = await API.put('api/Patient', data, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } })
   return response?.data
 }

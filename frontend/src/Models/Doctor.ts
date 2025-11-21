@@ -3,9 +3,9 @@ export interface DoctorRequest {
   dateOfAssociation: string;
   licenseNumber: string;
   qualification: number;
-  specialisation: number;
+  specialization: number;
   designation: number;
-  experienceYears: number;
+  experience: number;
   createdAt?: string;
   updatedAt?: string;
   createdBy?: string;
@@ -26,9 +26,9 @@ export interface DoctorDetails {
   licenseNumber?: string;
   qualification?: number;
   qualificationName?: string;
-  specialisation?: number;
-  specialisationName?: string;
+  specialization?: number;
+  specializationName?: string;
   designation?: number;
   designationName?: string;
-  experienceYears?: number;
+  experience?: number;
 }

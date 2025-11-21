@@ -10,7 +10,7 @@ export const UserProfilePayload = (
   return {
     userDetails: {
       userId: id,
-      fristName: formData.firstName,
+      firstName: formData.firstName,
       lastName: formData.lastName,
       gender: formData.gender,
       age: formData.age,

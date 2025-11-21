@@ -13,7 +13,8 @@ import { useSearchParams } from 'react-router-dom';
 const AddDoctor: React.FC = () => {
   const today = new Date().toISOString().split('T')[0];
   const {showSpinner, hideSpinner} = useSpinner();
-  const  user = JSON.parse(localStorage.getItem('user') || ''); // Use the useAuth hook
+  const user = JSON.parse(localStorage.getItem('user') || ''); // Use the useAuth hook
+  const userId = user?.userId;
   const isDoctor = user?.roleName == 'Doctor'; // Check if the user is Doctor
   const isAdmin = user?.roleName == 'Admin'; // Check if the user is Admin
   const [searchParams] = useSearchParams();
@@ -22,9 +23,9 @@ const AddDoctor: React.FC = () => {
     dateOfAssociation: today,
     licenseNumber: '',
     qualification: 0,
-    specialisation: 0,
+    specialization: 0,
     designation: 0,
-    experienceYears: 0,
+    experience: 0,
   });
 
   const [specialisations, setSpecialisations] = useState<Lookup[]>([]);
@@ -42,31 +43,47 @@ const AddDoctor: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Doctor Data:', formData);
-
-    if (searchParams.get('userId')) {
-      const payload = await setAdaptor(formData, Number(searchParams.get('userId')));
+    showSpinner();
+    console.log('User ID:', userId);
+    if (searchParams.get('userId') || userId) {
+      const payload = await setAdaptor(formData, Number(searchParams.get('userId')) || userId);
       try {
         const response = await UpdateDoctor(payload);
         if (response) {
           notify(response.data, ToastMessageTypes.SUCCESS);
+          setTimeout(() => {
+            hideSpinner();
+          }, 500)
         }
       } catch (error) {
         console.error('Error inserting doctor:', error);
         notify("Something went wrong!!!", ToastMessageTypes.ERROR)
+        setTimeout(() => {
+          hideSpinner();
+        }, 500)
       }
       return;
     }
 
-    const payload = await setAdaptor(formData, toGetUserId());
-    try {
-      const response = await InsertDoctor(payload);
-      if (response) {
-        notify("Doctor details added successfully", ToastMessageTypes.SUCCESS);
+    if (!userId) {
+      const payload = await setAdaptor(formData, toGetUserId());
+      try {
+        const response = await InsertDoctor(payload);
+        if (response) {
+          notify("Doctor details added successfully", ToastMessageTypes.SUCCESS);
+          setTimeout(() => {
+            hideSpinner();
+          }, 500)
+        }
+      } catch (error) {
+        console.error('Error inserting doctor:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR)
+        setTimeout(() => {
+          hideSpinner();
+        }, 500)
       }
-    } catch (error) {
-      console.error('Error inserting doctor:', error);
-      notify("Something went wrong!!!", ToastMessageTypes.ERROR)
     }
+    
   };
 
   useEffect(() => {
@@ -130,9 +147,9 @@ const AddDoctor: React.FC = () => {
         dateOfAssociation: doctorData?.data?.dateOfAssociation.split('T')[0],
         licenseNumber: doctorData?.data?.licenseNumber,
         qualification: Number(doctorData?.data?.qualification),
-        specialisation: Number(doctorData?.data?.specialisation),
+        specialization: Number(doctorData?.data?.specialization),
         designation: doctorData?.data?.designation,
-        experienceYears: doctorData?.data?.experienceYears
+        experience: doctorData?.data?.experience
       })
     }
   }
@@ -180,11 +197,11 @@ const AddDoctor: React.FC = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="specialisation">Specialization:</label>
+          <label htmlFor="specialization">Specialization:</label>
           <select
-            id="specialisation"
-            name="specialisation"
-            value={formData.specialisation}
+            id="specialization"
+            name="specialization"
+            value={formData.specialization}
             onChange={handleChange}
             required
           >
@@ -213,12 +230,12 @@ const AddDoctor: React.FC = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="experienceYears">Experience (Years):</label>
+          <label htmlFor="experience">Experience (Years):</label>
           <input
             type="number"
-            id="experienceYears"
-            name="experienceYears"
-            value={formData.experienceYears}
+            id="experience"
+            name="experience"
+            value={formData.experience}
             onChange={handleChange}
             required
           />

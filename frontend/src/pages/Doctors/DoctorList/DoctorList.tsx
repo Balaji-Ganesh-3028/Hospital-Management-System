@@ -52,8 +52,8 @@ function DoctorList({onClickEdit}: DoctorListProps) {
             <th>Doctor Id</th>
             <th>First Name</th>
             <th>Last Name</th>
-            {/* <th>Date of Association</th> */}
-            {/* <th>License Number</th> */}
+            <th>Date of Association</th>
+            <th>License Number</th>
             <th>Credential</th>
             <th>Specialization</th>
             <th>Designation</th>
@@ -67,12 +67,12 @@ function DoctorList({onClickEdit}: DoctorListProps) {
               <td>{doctor.id}</td>
               <td>{doctor.firstName}</td>
               <td>{doctor.lastName}</td>
-              {/* <td>{doctor.dateOfAssociation}</td> */}
-              {/* <td>{doctor.licenseNumber}</td> */}
+              <td>{doctor.dateOfAssociation}</td>
+              <td>{doctor.licenseNumber}</td>
               <td>{doctor.qualificationName}</td>
-              <td>{doctor.specialisationName}</td>
+              <td>{doctor.specializationName}</td>
               <td>{doctor.designationName}</td>
-              <td>{doctor.experienceYears}</td>
+              <td>{doctor.experience}</td>
               {isAdmin && <td>
                 <button className="edit-btn" onClick={() => {navigateToDoctorProfile(Number(doctor.id))}}><i className="fas fa-edit"></i></button>
                 {/* <button className="delete-btn"><i className="fas fa-trash"></i></button> */}

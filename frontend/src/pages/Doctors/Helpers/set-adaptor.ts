@@ -6,9 +6,9 @@ export const setAdaptor = (data: DoctorDetails, id: number): DoctorRequest => {
     dateOfAssociation: data.dateOfAssociation || "",
     licenseNumber: data.licenseNumber || "",
     qualification: data.qualification || 0,
-    specialisation: data.specialisation || 0,
+    specialization: data.specialization || 0,
     designation: data.designation || 0,
-    experienceYears: data.experienceYears || 0,
+    experience: Number(data.experience) || 0,
   };
 };
 

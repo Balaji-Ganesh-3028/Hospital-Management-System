@@ -2,11 +2,11 @@ import type { AppointmentRequest } from "../../Models/Appointment";
 import API from "../API/api";
 
 export const GetAllAppointments = () => {
-  return API.get("api/Appointment");
+  return API.get("api/Appointment", { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
 };
 
 export const GetAppointmentDetails = (id: number) => {
-  return API.get(`api/Appointment/${id}`);
+  return API.get(`api/Appointment/${id}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
 };
 
 /**
@@ -15,7 +15,7 @@ export const GetAppointmentDetails = (id: number) => {
  * @returns {Promise<Response>} - A promise that resolves to the response from the API.
  */
 export const InsertAppointment = (data: AppointmentRequest) => {
-  return API.post("api/Appointment", data);
+  return API.post("api/Appointment", data, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
 };
 
 /**
@@ -24,5 +24,5 @@ export const InsertAppointment = (data: AppointmentRequest) => {
  * @returns {Promise<Response>} - A promise that resolves to the response from the API.
  */
 export const UpdateAppointment = (data: AppointmentRequest) => {
-  return API.put("api/Appointment", data);
+  return API.put("api/Appointment", data, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
 };

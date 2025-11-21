@@ -29,7 +29,7 @@ const DoctorDashboard = () => {
           const allAppointments = appointmentsResponse.data;
 
           const doctorAppointments = allAppointments.filter(
-            (appt: AppointmentDetails) => appt.doctorId === doctorData.doctorId
+            (appt: AppointmentDetails) => appt.doctorInfo.doctorId === doctorData.doctorId
           );
 
           const now = new Date();
@@ -37,7 +37,7 @@ const DoctorDashboard = () => {
           const past: AppointmentDetails[] = [];
 
           doctorAppointments.forEach((appt: AppointmentDetails) => {
-            if (new Date(appt.appointmentDate) >= now) {
+            if (new Date(appt.appointmentDetails.appointmentDate) >= now) {
               upcoming.push(appt);
             } else {
               past.push(appt);
@@ -46,7 +46,7 @@ const DoctorDashboard = () => {
 
           const today = new Date().toISOString().split("T")[0];
           const todayAppts = doctorAppointments.filter(
-            (appt: AppointmentDetails) => appt.appointmentDate.split("T")[0] === today
+            (appt: AppointmentDetails) => appt.appointmentDetails.appointmentDate.split("T")[0] === today
           );
           setTodaysAppointments(todayAppts);
 
@@ -164,8 +164,8 @@ const DoctorDashboard = () => {
         {todaysAppointments.length > 0 ? (
           <ul>
             {todaysAppointments.map((appt) => (
-              <li key={appt.appointmentId}>
-                <strong>{new Date(appt.appointmentDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong> - {appt.patientFirstName} {appt.patientLastName}
+              <li key={appt.appointmentDetails?.appointmentId}>
+                <strong>{new Date(appt.appointmentDetails?.appointmentDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong> - {appt.patientInfo?.patientFirstName} {appt.patientInfo?.patientLastName}
               </li>
             ))}
           </ul>
@@ -179,8 +179,8 @@ const DoctorDashboard = () => {
         {upcomingAppointments.length > 0 ? (
           <ul>
             {upcomingAppointments.map((appt) => (
-              <li key={appt.appointmentId}>
-                <strong>{new Date(appt.appointmentDate).toLocaleDateString()}</strong> with {appt.patientFirstName} {appt.patientLastName}
+              <li key={appt.appointmentDetails?.appointmentId}>
+                <strong>{new Date(appt.appointmentDetails?.appointmentDate).toLocaleDateString()}</strong> with {appt.patientInfo?.patientFirstName} {appt.patientInfo?.patientLastName}
               </li>
             ))}
           </ul>
@@ -194,8 +194,8 @@ const DoctorDashboard = () => {
         {pastAppointments.length > 0 ? (
           <ul>
             {pastAppointments.map((appt) => (
-              <li key={appt.appointmentId}>
-                <strong>{new Date(appt.appointmentDate).toLocaleDateString()}</strong> with {appt.patientFirstName} {appt.patientLastName} - <i>{appt.status}</i>
+              <li key={appt.appointmentDetails?.appointmentId}>
+                <strong>{new Date(appt.appointmentDetails?.appointmentDate).toLocaleDateString()}</strong> with {appt.patientInfo?.patientFirstName} {appt.patientInfo?.patientLastName} - <i>{appt.appointmentDetails?.status}</i>
               </li>
             ))}
           </ul>

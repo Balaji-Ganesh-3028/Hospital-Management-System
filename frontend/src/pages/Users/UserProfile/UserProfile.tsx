@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './UserProfile.css';
-import { toGetUserId, UserProfilePayload } from '../Helpers/User-Profile-Payload';
+import { UserProfilePayload } from '../Helpers/User-Profile-Payload';
 import type { UserProfileFormData } from '../../../Models/User-Profile';
 import { GetUserProfile, InsertUserProfile, UpdateUserProfile } from '../../../Service/User-Profile/user-profile';
 import type { Lookup } from '../../../Models/Lookups';
@@ -54,8 +54,9 @@ const UserProfile: React.FC = () => {
     console.log('Form Data Submitted:', formData);
 
     // UPDATE USER PROFILE
-    if(searchParams.get('userId')) {
-      const payload = await UserProfilePayload(formData, Number(searchParams.get('userId')));
+    if (searchParams.get('userId') || userId) {
+      const id = searchParams.get('userId') ? Number(searchParams.get('userId')) : userId;
+      const payload = await UserProfilePayload(formData, id);
 
       try {
         const updateResponse = await UpdateUserProfile(payload);
@@ -64,6 +65,10 @@ const UserProfile: React.FC = () => {
           notify(updateResponse, ToastMessageTypes.SUCCESS);
         }
         else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR)
+
+        setTimeout(() => {
+          hideSpinner();
+        }, 800)
         return; 
       } catch(error) {
         console.error('Error updating user profile:', error);
@@ -72,27 +77,31 @@ const UserProfile: React.FC = () => {
     }
 
     // INSERT USER PROFILE
-    try {
-      showSpinner();
-      const payload = UserProfilePayload(formData, userId);
+    if (userId === 0) {
+      try {
+        showSpinner();
+        const payload = UserProfilePayload(formData, userId);
 
-      // INSERT USER PROFILE
+        // INSERT USER PROFILE
         const response = await InsertUserProfile(payload);
         if (response == "User details added successfully") {
           notify(response, ToastMessageTypes.SUCCESS);
           // if (isFrontDesk) navigate('/users?page=userList');
         }
         else notify("Somthing went wrong!!!", ToastMessageTypes.ERROR);
-        return; 
-    } catch (error) {
-      console.error('Error inserting user profile:', error);
-      notify("Something went wrong!!!", ToastMessageTypes.ERROR);
-      hideSpinner();
+      
+        setTimeout(() => {
+          hideSpinner();
+        }, 800)
+        return;
+      } catch (error) {
+        console.error('Error inserting user profile:', error);
+        notify("Something went wrong!!!", ToastMessageTypes.ERROR);
+        hideSpinner();
+      }
     }
     
-    setTimeout(() => {
-      hideSpinner();
-    }, 800)
+    
   };
 
   useEffect(() => {

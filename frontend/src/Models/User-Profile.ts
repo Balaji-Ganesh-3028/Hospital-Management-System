@@ -19,7 +19,7 @@ export interface ContactDetails {
 
 export interface UserDetails {
   userId?: number;
-  fristName: string;
+  firstName: string;
   lastName: string;
   dob: string;
   gender: number | string;
