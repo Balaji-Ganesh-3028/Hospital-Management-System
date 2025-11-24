@@ -37,6 +37,7 @@ namespace DataAccessLayer.Implementation
                     {
                         userProfileCmd.CommandType = CommandType.StoredProcedure;
 
+                        // ADD PARAMETERS
                         userProfileCmd.Parameters.AddWithValue("@userId", userProfile.UserDetails.UserId);
                         userProfileCmd.Parameters.AddWithValue("@firstName", userProfile.UserDetails.FirstName);
                         userProfileCmd.Parameters.AddWithValue("@lastName", userProfile.UserDetails.LastName);
@@ -65,6 +66,7 @@ namespace DataAccessLayer.Implementation
                     {
                         contactInfoCmd.CommandType = CommandType.StoredProcedure;
 
+                        // ADD PARAMETERS
                         contactInfoCmd.Parameters.AddWithValue("@userId", userProfile.UserDetails.UserId);
                         contactInfoCmd.Parameters.AddWithValue("@phoneNumber", userProfile.ContactDetails.PhoneNumber);
                         contactInfoCmd.Parameters.AddWithValue("@doorFloorBuilding", userProfile.ContactDetails.doorFloorBuilding);
@@ -87,11 +89,13 @@ namespace DataAccessLayer.Implementation
                             contactInfoCmd.Parameters.AddWithValue("@updatedBy", userProfile.UserDetails.UpdatedBy);
                         }
 
+
                         int rowsAffected = await contactInfoCmd.ExecuteNonQueryAsync();
                     }
 
                     sqlTransaction.Commit();
 
+                    // RETURN SUCCESS MESSAGE
                     return AppConstants.DBResponse.Success;
 
                 } catch (SqlException sqlEx)
@@ -105,13 +109,18 @@ namespace DataAccessLayer.Implementation
 
         public async Task<object> GetAllUserDetails(UserDetailsQuery query)
         {
+            // CONNECT TO DATABASE
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
+
+                // EXECUTE STORE PROCEDURE
                 using (SqlCommand cmd = new SqlCommand("sp_get_all_user_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    // ADD PARAMETERS TO COMMAND
                     cmd.Parameters.AddWithValue("@searchTerm", query.SearchTerm);
                     cmd.Parameters.AddWithValue("@UserTypeFilter", query.UserType);
                     cmd.Parameters.AddWithValue("@pageSize", query.PageSize);
@@ -121,10 +130,13 @@ namespace DataAccessLayer.Implementation
 
                     var userList = new List<object>();
 
+                    // EXECUTE READER
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
+                        // READ DATA
                         while (await reader.ReadAsync())
                         {
+                            // ADD USER DETAIL TO LIST
                             userList.Add(new UserDetailInfoView
                             {
                                 UserId = reader.GetInt32(0),
@@ -138,6 +150,7 @@ namespace DataAccessLayer.Implementation
                             });
                         }
 
+                        // RETURN USER LIST
                         return userList;
                     }
 
@@ -147,52 +160,62 @@ namespace DataAccessLayer.Implementation
 
         public async Task<object> UserProfileDetail(int userId)
         {
+            // VALIDATE USER ID AND RETURN ERROR IF INVALID
             if (userId <= 0)
             {
                 return new { message = AppConstants.ResponseMessages.UserIdRequired };
             }
 
+            // CONNECT TO DATABASE
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
 
+                // EXECUTE STORE PROCEDURE
                 using (SqlCommand cmd = new SqlCommand("sp_get_user_profile_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+
+                    // ADD PARAMETERS TO COMMAND
                     cmd.Parameters.AddWithValue("@UserId", userId);
 
+                    // EXECUTE READER
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
+                        // READ DATA
                         if (await reader.ReadAsync())
                         {
-                            var userProfile = new
+                            // MAP DATA TO OBJECT AND RETURN
+                            var userProfile = new UserDetailInfoView
                             {
-                                userId = reader["UserId"] as int? ?? 0,
-                                email = reader["Email"] as string,
-                                roleId = reader["RoleId"] as int? ?? 0,
-                                roleName = reader["RoleName"] as string,
-                                userName = reader["UserName"] as string,
-                                firstName = reader["FirstName"] as string,
-                                lastName = reader["LastName"] as string,
-                                gender = reader["Gender"] as int? ?? 0,
-                                genderValue = reader["GenderValue"] as string,
-                                age = reader["Age"] as int? ?? 0,
-                                dob = reader["DOB"],
-                                phoneNumber = reader["PhoneNumber"] as string,
-                                doorFloorBuilding = reader["DoorFloorBuilding"] as string,
-                                addressLine1 = reader["AddressLine1"] as string,
-                                addressLine2 = reader["AddressLine2"] as string,
-                                state = reader["State"] as string,
-                                city = reader["City"] as string,
-                                country = reader["Country"] as string,
-                                pincode = reader["Pincode"] as string
+                                UserId = reader["UserId"] as int? ?? 0,
+                                Email = reader["Email"] as string,
+                                RoleId = reader["RoleId"] as int? ?? 0,
+                                RoleName = reader["RoleName"] as string,
+                                UserName = reader["UserName"] as string,
+                                FirstName = reader["FirstName"] as string,
+                                LastName = reader["LastName"] as string,
+                                Gender = reader["Gender"] as int? ?? 0,
+                                GenderValue = reader["GenderValue"] as string,
+                                Age = reader["Age"] as int? ?? 0,
+                                DOB = (DateTime)reader["DOB"],
+                                PhoneNumber = reader["PhoneNumber"] as string,
+                                DoorFloorBuilding = reader["DoorFloorBuilding"] as string,
+                                AddressLine1 = reader["AddressLine1"] as string,
+                                AddressLine2 = reader["AddressLine2"] as string,
+                                State = reader["State"] as string,
+                                City = reader["City"] as string,
+                                Country = reader["Country"] as string,
+                                Pincode = reader["Pincode"] as string
                             };
 
+                            // RETURN USER PROFILE
                             return userProfile;
                         }
                         else
                         {
-                            return new { message = AppConstants.ResponseMessages.UserNotFound };
+                            return AppConstants.ResponseMessages.UserNotFound;
                         }
                     }
                 }
@@ -201,18 +224,24 @@ namespace DataAccessLayer.Implementation
 
         public async Task<string> DeleteUserProfileDetails(int userId)
         {
+            // CONNECT TO DATABASE
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
 
+                // EXECUTE STORE PROCEDURE
                 using(SqlCommand cmd = new SqlCommand("sp_delete_user_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    
+                    // ADD PARAMETERS TO COMMAND
                     cmd.Parameters.AddWithValue("@UserId", userId);
 
+                    // EXECUTE READER
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        // READ DATA & RETURN RESPONSE
                         if (reader.Read() && reader["Message"].ToString() == AppConstants.DBResponse.Success)
                         {
                             return AppConstants.DBResponse.Success;

@@ -41,6 +41,8 @@
             public const string UserIdRequired = "UserId is required";
             public const string UserNotFound = "User not found";
             public const string InvalidUserCredentials = "Invalid user credentials";
+            public const string NoUserDetailsFound = "No user details found";
+            public const string UserDetailNotFound = "User detail not found";
 
             //APPOINTMENT RELATED MESSAGE
             public const string DoctorAppointmentFixed = "Doctor appointment fixed";
