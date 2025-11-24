@@ -1,0 +1,22 @@
+.patient-list-container {
+  padding: 20px;
+}
+
+.patient-list-actions {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.patient-list-actions button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.patient-list-actions button:hover {
+  background-color: var(--primary-dark-color);
+}
