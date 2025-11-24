@@ -56,11 +56,9 @@ namespace backend.Controllers
             }
         }
 
-
         // TO GET GENDER
         [AllowAnonymous]
         [HttpGet("gender")]
-
         public async Task<IActionResult> GetGender()
         {
             string connectionString = _configuration["ConnectionStrings:DB"];
@@ -102,6 +100,7 @@ namespace backend.Controllers
             }
         }
 
+        // TO GET BLOOD GROUP
         [AllowAnonymous]
         [HttpGet("blood-group")]
         public async Task<IActionResult> GetBloodGroup()
@@ -145,6 +144,7 @@ namespace backend.Controllers
             }
         }
 
+        // TO GET APPOINTMENT TYPE
         [AllowAnonymous]
         [HttpGet("appointment-type")]
         public async Task<IActionResult> GetAppointmentType()
@@ -188,6 +188,7 @@ namespace backend.Controllers
             }
         }
 
+        // TO GET APPOINTMENT STATUS
         [AllowAnonymous]
         [HttpGet("appointment-status")]
         public async Task<IActionResult> GetAppointmentStatus()
@@ -231,6 +232,7 @@ namespace backend.Controllers
             }
         }
 
+        // TO GET SPECIALISATION
         [AllowAnonymous]
         [HttpGet("specialisation")]
         public async Task<IActionResult> GetSpecialisation()
@@ -274,6 +276,7 @@ namespace backend.Controllers
             }
         }
 
+        // TO GET QUALIFICATION
         [AllowAnonymous]
         [HttpGet("qualification")]
         public async Task<IActionResult> GetQualification()

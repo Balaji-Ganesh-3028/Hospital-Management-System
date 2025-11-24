@@ -3,14 +3,14 @@
   "WorkspaceRootPath": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C65B234-6EC0-4913-A184-368DC0BC32D9}|..\\AppModels\\AppModels.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\appmodels\\responsemodels\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\implementation\\doctordal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C65B234-6EC0-4913-A184-368DC0BC32D9}|..\\AppModels\\AppModels.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\appmodels\\doctordetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\middleware\\exceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:middleware\\exceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -20,7 +20,25 @@
       "AbsoluteMoniker": "D:0:0:{7BF5DCAC-E7C1-436B-919B-0F1FC6FEFF1C}|..\\BusinessLayer\\BusinessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\businesslayer\\implementation\\doctorbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\interface\\idocotrdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A1CA60B4-3F55-452A-AA48-B06806CCCA85}|..\\Constant\\Constant.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\constant\\appconstant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C65B234-6EC0-4913-A184-368DC0BC32D9}|..\\AppModels\\AppModels.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\appmodels\\doctordetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\middleware\\exceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:middleware\\exceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\registercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -36,10 +54,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\implementation\\userprofiledal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -120,14 +134,6 @@
       "AbsoluteMoniker": "D:0:0:{6C65B234-6EC0-4913-A184-368DC0BC32D9}|..\\AppModels\\AppModels.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\appmodels\\models\\doctorinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\backend\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEE9BFE1-0D04-4F4B-B035-21DF57FB78F3}|backend.csproj|solutionrelative:controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6C65B234-6EC0-4913-A184-368DC0BC32D9}|..\\AppModels\\AppModels.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\appmodels\\patientdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -148,9 +154,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\interface\\iregisterdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\interface\\idocotrdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6D6D0735-76C2-4C75-A300-F3F576A91FC1}|..\\DataAccessLayer\\DataAccessLayer.csproj|d:\\workspace\\react-dot-net-application\\hospital-management-system\\dataaccesslayer\\interface\\iappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -206,7 +209,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -226,80 +229,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DoctorDAL.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
-              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
-              "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAA+wH8AAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T16:44:05.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RegisterDAL.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
-              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
-              "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAwwCcAAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T07:57:49.105Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PatientController.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\PatientController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PatientController.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\PatientController.cs",
-              "RelativeToolTip": "Controllers\\PatientController.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAwwBoAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T09:35:48.859Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RegisterController.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\RegisterController.cs",
-              "RelativeDocumentMoniker": "Controllers\\RegisterController.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\RegisterController.cs",
-              "RelativeToolTip": "Controllers\\RegisterController.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA/wBgAAABTAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T06:29:24.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DoctorBL.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\DoctorBL.cs",
-              "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\DoctorBL.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\DoctorBL.cs",
-              "RelativeToolTip": "..\\BusinessLayer\\Implementation\\DoctorBL.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAuwCAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T16:43:25.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DoctorDetails.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\DoctorDetails.cs",
-              "RelativeDocumentMoniker": "..\\AppModels\\DoctorDetails.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\DoctorDetails.cs",
-              "RelativeToolTip": "..\\AppModels\\DoctorDetails.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAA2wAsAAAAFAAAA",
+              "Title": "LoginResponse.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\ResponseModels\\LoginResponse.cs",
+              "RelativeDocumentMoniker": "..\\AppModels\\ResponseModels\\LoginResponse.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\ResponseModels\\LoginResponse.cs",
+              "RelativeToolTip": "..\\AppModels\\ResponseModels\\LoginResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T11:34:03.889Z",
+              "WhenOpened": "2025-11-24T07:09:35.262Z",
               "EditorCaption": ""
             },
             {
@@ -310,14 +248,105 @@
               "RelativeDocumentMoniker": "Controllers\\DoctorController.cs",
               "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\DoctorController.cs",
               "RelativeToolTip": "Controllers\\DoctorController.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAAwD8AAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T16:42:43.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "Controllers\\DashboardController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T11:32:30.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppConstant.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\AppConstant.cs",
+              "RelativeDocumentMoniker": "..\\Constant\\AppConstant.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\AppConstant.cs",
+              "RelativeToolTip": "..\\Constant\\AppConstant.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAMwA0AAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T11:31:00.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDocotrDAL.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
+              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
+              "RelativeToolTip": "..\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T16:44:24.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DoctorDAL.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
+              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
+              "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAYwKkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T16:44:05.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAAADEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T06:19:46.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AppointmentController.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "Controllers\\AppointmentController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBQAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T05:21:20.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DoctorBL.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\DoctorBL.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\DoctorBL.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\DoctorBL.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\Implementation\\DoctorBL.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAYwCQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T16:43:25.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "ExceptionHandler.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Middleware\\ExceptionHandler.cs",
               "RelativeDocumentMoniker": "Middleware\\ExceptionHandler.cs",
@@ -325,12 +354,59 @@
               "RelativeToolTip": "Middleware\\ExceptionHandler.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAAwBkAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T06:20:37.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T06:20:37.018Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "DoctorDetails.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\DoctorDetails.cs",
+              "RelativeDocumentMoniker": "..\\AppModels\\DoctorDetails.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\DoctorDetails.cs",
+              "RelativeToolTip": "..\\AppModels\\DoctorDetails.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAA2wAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T11:34:03.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RegisterController.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\RegisterController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RegisterController.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\RegisterController.cs",
+              "RelativeToolTip": "Controllers\\RegisterController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA/wBgAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T06:29:24.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PatientController.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "Controllers\\PatientController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAwwBoAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:35:48.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RegisterDAL.cs",
+              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
+              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
+              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
+              "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\RegisterDAL.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAwwCcAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T07:57:49.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -338,38 +414,11 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAAFYAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T09:32:52.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T09:32:52.971Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppConstant.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\AppConstant.cs",
-              "RelativeDocumentMoniker": "..\\Constant\\AppConstant.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\Constant\\AppConstant.cs",
-              "RelativeToolTip": "..\\Constant\\AppConstant.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAewBwAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T11:31:00.151Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "Controllers\\LoginController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAwwEMAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T06:19:46.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "UserProfileDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\UserProfileDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\UserProfileDAL.cs",
@@ -377,12 +426,11 @@
               "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\UserProfileDAL.cs",
               "ViewState": "AQIAAFUAAAAAAAAAAAAwwGMAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T06:38:09.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T06:38:09.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "PatientDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\PatientDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\PatientDAL.cs",
@@ -390,12 +438,11 @@
               "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\PatientDAL.cs",
               "ViewState": "AQIAADUAAAAAAAAAAAAwwEMAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T09:54:46.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T09:54:46.402Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "AppointmentDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Implementation\\AppointmentDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Implementation\\AppointmentDAL.cs",
@@ -403,12 +450,11 @@
               "RelativeToolTip": "..\\DataAccessLayer\\Implementation\\AppointmentDAL.cs",
               "ViewState": "AQIAAJkAAAAAAAAAAAAwwKcAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T06:24:51.237Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T06:24:51.237Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -416,12 +462,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAEMAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T06:51:16.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-25T06:51:16.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "TokenDecode.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\utilities\\TokenDecode.cs",
               "RelativeDocumentMoniker": "utilities\\TokenDecode.cs",
@@ -433,7 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "IDoctorInfo.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Interfaces\\IDoctorInfo.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Interfaces\\IDoctorInfo.cs",
@@ -445,7 +490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "DoctorInfoView.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Views\\DoctorInfoView.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Views\\DoctorInfoView.cs",
@@ -457,7 +502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "IUserProfileDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IUserProfileDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IUserProfileDAL.cs",
@@ -469,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -481,7 +526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "UserProfileBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\UserProfileBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\UserProfileBL.cs",
@@ -493,7 +538,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "IUserProfileBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Interface\\IUserProfileBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Interface\\IUserProfileBL.cs",
@@ -505,7 +550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "DoctorDAL.cs",
               "DocumentMoniker": "C:\\Users\\BalajiGanesan\\AppData\\Local\\SourceServer\\faaf7eb0245b7d232df465662ebfa3b68157c33305e911a852c0e79bac89f551\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
               "ToolTip": "C:\\Users\\BalajiGanesan\\AppData\\Local\\SourceServer\\faaf7eb0245b7d232df465662ebfa3b68157c33305e911a852c0e79bac89f551\\DataAccessLayer\\Implementation\\DoctorDAL.cs",
@@ -515,7 +560,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "PatientBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\PatientBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\PatientBL.cs",
@@ -527,7 +572,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "IPatientDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IPatientDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IPatientDAL.cs",
@@ -539,7 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "UserDetails.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Models\\UserDetails.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Models\\UserDetails.cs",
@@ -551,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "UserDetailInfoView.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Views\\UserDetailInfoView.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Views\\UserDetailInfoView.cs",
@@ -563,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 31,
               "Title": "RegisterBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\RegisterBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\RegisterBL.cs",
@@ -575,7 +620,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 32,
               "Title": "ContactDetails.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Models\\ContactDetails.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Models\\ContactDetails.cs",
@@ -587,7 +632,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 33,
               "Title": "AppointmentBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Implementation\\AppointmentBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Implementation\\AppointmentBL.cs",
@@ -599,7 +644,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 34,
               "Title": "UserProfileRequest.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\RequestModels\\UserProfileRequest.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\RequestModels\\UserProfileRequest.cs",
@@ -611,7 +656,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 35,
               "Title": "IUserDetailsView.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Interfaces\\IUserDetailsView.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Interfaces\\IUserDetailsView.cs",
@@ -623,7 +668,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 37,
               "Title": "PatientInfoView.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Views\\PatientInfoView.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Views\\PatientInfoView.cs",
@@ -635,7 +680,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 36,
               "Title": "AppointmentDetailsResponse.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\ResponseModels\\AppointmentDetailsResponse.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\ResponseModels\\AppointmentDetailsResponse.cs",
@@ -647,7 +692,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 38,
               "Title": "IPatientInfo.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Interfaces\\IPatientInfo.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Interfaces\\IPatientInfo.cs",
@@ -659,7 +704,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 39,
               "Title": "DoctorInfo.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Models\\DoctorInfo.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Models\\DoctorInfo.cs",
@@ -671,31 +716,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "Controllers\\DashboardController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBcAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T11:32:30.928Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "AppointmentController.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\AppointmentController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AppointmentController.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\AppointmentController.cs",
-              "RelativeToolTip": "Controllers\\AppointmentController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwBgAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T05:21:20.559Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "DateTimeStamps.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Models\\DateTimeStamps.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Models\\DateTimeStamps.cs",
@@ -707,7 +728,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "PatientDetails.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\PatientDetails.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\PatientDetails.cs",
@@ -719,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "RegisterRequest.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\RequestModels\\RegisterRequest.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\RequestModels\\RegisterRequest.cs",
@@ -731,7 +752,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "LoginRequest.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\RequestModels\\LoginRequest.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\RequestModels\\LoginRequest.cs",
@@ -743,7 +764,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "ClaimsItems.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Models\\ClaimsItems.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Models\\ClaimsItems.cs",
@@ -755,7 +776,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "GenerateToken.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\utilities\\GenerateToken.cs",
               "RelativeDocumentMoniker": "utilities\\GenerateToken.cs",
@@ -767,7 +788,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "IRegisterDAL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IRegisterDAL.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IRegisterDAL.cs",
@@ -779,19 +800,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "IDocotrDAL.cs",
-              "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
-              "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
-              "ToolTip": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
-              "RelativeToolTip": "..\\DataAccessLayer\\Interface\\IDocotrDAL.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T16:44:24.802Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "IAppointment.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\Interface\\IAppointment.cs",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\Interface\\IAppointment.cs",
@@ -803,7 +812,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "IRegisterBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Interface\\IRegisterBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Interface\\IRegisterBL.cs",
@@ -815,7 +824,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "IPatientBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Interface\\IPatientBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Interface\\IPatientBL.cs",
@@ -827,7 +836,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "AppModels.csproj",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\AppModels.csproj",
               "RelativeDocumentMoniker": "..\\AppModels\\AppModels.csproj",
@@ -839,7 +848,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "IDoctorBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Interface\\IDoctorBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Interface\\IDoctorBL.cs",
@@ -851,7 +860,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "IAppointmentBL.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\Interface\\IAppointmentBL.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Interface\\IAppointmentBL.cs",
@@ -863,7 +872,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "Appointment.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\Appointment.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\Appointment.cs",
@@ -875,7 +884,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "UserDetailsQuery.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\AppModels\\UserDetailsQuery.cs",
               "RelativeDocumentMoniker": "..\\AppModels\\UserDetailsQuery.cs",
@@ -887,7 +896,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "Lookups.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\Controllers\\Lookups.cs",
               "RelativeDocumentMoniker": "Controllers\\Lookups.cs",
@@ -899,7 +908,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "backend.csproj",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\backend.csproj",
               "RelativeDocumentMoniker": "backend.csproj",
@@ -911,7 +920,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "BusinessLayer.csproj",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\BusinessLayer\\BusinessLayer.csproj",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\BusinessLayer.csproj",
@@ -923,7 +932,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "DataAccessLayer.csproj",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\DataAccessLayer\\DataAccessLayer.csproj",
               "RelativeDocumentMoniker": "..\\DataAccessLayer\\DataAccessLayer.csproj",
@@ -935,7 +944,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "CustomAuth.cs",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\CustomAttributes\\CustomAuth.cs",
               "RelativeDocumentMoniker": "CustomAttributes\\CustomAuth.cs",
@@ -947,7 +956,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Workspace\\React-DOT-NET-Application\\Hospital-management-System\\backend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
