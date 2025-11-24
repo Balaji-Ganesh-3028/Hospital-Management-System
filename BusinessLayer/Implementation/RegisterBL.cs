@@ -15,6 +15,7 @@ namespace BusinessLayer.Implementation
 
         public async Task<string> RegisterUser(RegisterRequest register)
         {
+            // CALL DATA ACCESS LAYER TO REGISTER USER
             return await _registerDal.RegisterUser(register);
         }
     }
