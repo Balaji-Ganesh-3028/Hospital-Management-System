@@ -11,8 +11,11 @@
 
             // DOCTOR RELATED MESSAGES
             public const string DoctorDetailsRequired = "Doctor details required";
+            public const string DoctorIdRequired = "Doctor Id required";
             public const string DoctorDetailsAddedSuccessfully = "Doctor details added successfully";
             public const string DoctorDetailsUpdatedSuccessfully = "Doctor details updated successfully";
+            public const string DoctorDetailNotFound = "Doctor detail not found";
+            public const string DoctorDetailsNotFound = "Doctor details not found";
 
             // PATIENT RELATED MESSAGES
             public const string PatientDetailsRequired = "Patient details required";

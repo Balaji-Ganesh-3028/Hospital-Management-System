@@ -20,19 +20,25 @@ namespace DataAccessLayer.Implementation
         }
         public async Task<object> GetAllDoctorDetails()
         {
+            // CONNECT TO DATABASE
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
 
+                // EXECUTE STORE PROCEDURE
                 using (SqlCommand cmd = new SqlCommand("sp_get_all_doctor_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     var doctorList = new List<object>();
+
+                    // READ DATA
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                         {
+                            // ADD DOCTOR DETAILS TO LIST
                             doctorList.Add(new DoctorInfoView
                             {
                                 Email = reader["Email"] as string ?? "",
@@ -57,6 +63,7 @@ namespace DataAccessLayer.Implementation
 
                         }
 
+                        // RETURN DOCTOR LIST
                         return doctorList;
                     }
                 }
@@ -65,23 +72,29 @@ namespace DataAccessLayer.Implementation
 
         public async Task<object> GetDoctorDetails(int userId)
         {
+            // CONNECT TO DATABASE
             using (SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
                 // OPEN CONNECTION
                 await connection.OpenAsync();
 
+                // EXECUTE STORE PROCEDURE
                 using (SqlCommand cmd = new SqlCommand("sp_get_doctor_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Add parameter for userId
+                    // ADD PARAMETERS TO COMMAND
                     cmd.Parameters.AddWithValue("@UserId", userId);
 
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
+                        // READ DATA, IF NO DATA RETURN NULL
                         if (!await reader.ReadAsync())
+                        {
                             return null;
-                        
+                        }
+
+                        // RETURN DOCTOR DETAILS
                         return new DoctorInfoView
                         {
                             Email = (string)reader["Email"],
@@ -112,13 +125,18 @@ namespace DataAccessLayer.Implementation
 
         public async Task<string> InsertUpdateDoctorDetails(DoctorDetails doctorDetails)
         {
+            // CONNECT TO DATABASE
             using(SqlConnection connection = new SqlConnection(_dbConnectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
+
+                // EXECUTE STORE PROCEDURE
                 using (SqlCommand cmd = new SqlCommand("sp_update_doctor_details", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    // ADD PARAMETERS TO COMMAND
                     cmd.Parameters.AddWithValue("UserId", doctorDetails.UserId);
                     cmd.Parameters.AddWithValue("@dateOfAssociation", doctorDetails.DateOfAssociation);
                     cmd.Parameters.AddWithValue("@licenseNumber", doctorDetails.LicenseNumber);
@@ -139,15 +157,11 @@ namespace DataAccessLayer.Implementation
                         cmd.Parameters.AddWithValue("@updatedBy", doctorDetails.UpdatedBy);
                     }
 
+                    // EXECUTE COMMAND
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
-                    if (rowsAffected > 0)
-                    {
-                        return AppConstants.DBResponse.Success;
-                    }
-                    else
-                    {
-                        return AppConstants.DBResponse.Failed;
-                    }
+
+                    // RETURN RESPONSE BASED ON ROWS AFFECTED
+                    return rowsAffected > 0 ? AppConstants.DBResponse.Success : AppConstants.DBResponse.Failed;
                 };
             };
         }
