@@ -22,13 +22,13 @@ function AddAppointment({ onAddAppointment }: AddAppointmentProps) {
   const appointmentId = searchParams.get('userId');
 
   const [formData, setFormData] = useState({
-    patientId: '',
-    doctorId: '',
+    patientId: 0,
+    doctorId: 0,
     appointmentDate: '',
-    purposeOfVisit: '',
+    purposeOfVisit: 0,
     illnessDiseases: '',
     procedureMedications: '',
-    currentStatus: '',
+    currentStatus: 0,
   });
 
   const [doctors, setDoctors] = useState<DoctorDetails[]>([]);
@@ -75,15 +75,15 @@ function AddAppointment({ onAddAppointment }: AddAppointmentProps) {
   const onLoadAppointmentDetails = async (appointmentId: string) => {
     try {
       const response = await GetAppointmentDetails(Number(appointmentId));
-      console.log(response.data);
+      console.log(response, 'appointment details');
       setFormData({
-        patientId: response.data.patientId,
-        doctorId:  response.data.doctorId,
-        appointmentDate: response.data.appointmentDate,
-        purposeOfVisit: response.data.purposeOfVisit,
-        illnessDiseases: response.data.illnessOrDisease,
-        procedureMedications: response.data.proceduresOrMedication,
-        currentStatus: response.data.currentStatus,
+        patientId: response.patientInfo.patientId,
+        doctorId:  response.doctorInfo.doctorId,
+        appointmentDate: response.appointmentDetails.appointmentDate,
+        purposeOfVisit: response.appointmentDetails.purposeOfVisit,
+        illnessDiseases: response.appointmentDetails.illnessOrDisease,
+        procedureMedications: response.appointmentDetails.proceduresOrMedication,
+        currentStatus: response.appointmentDetails.currentStatus,
       });
       
 

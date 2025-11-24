@@ -10,8 +10,6 @@
             public const string UnExpectedError = "An unexpected error occurred.";
 
             // DOCTOR RELATED MESSAGES
-            public const string DoctorAppointmentFixed = "Doctor Appointment fixed";
-            public const string DoctorAppointmentUpdates = "Doctor Appointment updated";
             public const string DoctorDetailsRequired = "Doctor details required";
             public const string DoctorDetailsAddedSuccessfully = "Doctor details added successfully";
             public const string DoctorDetailsUpdatedSuccessfully = "Doctor details updated successfully";
@@ -37,6 +35,14 @@
             public const string UserIdRequired = "UserId is required";
             public const string UserNotFound = "User not found";
             public const string InvalidUserCredentials = "Invalid user credentials";
+
+            //APPOINTMENT RELATED MESSAGE
+            public const string DoctorAppointmentFixed = "Doctor appointment fixed";
+            public const string DoctorAppointmentUpdates = "Doctor appointment updated";
+            public const string AppointmentDetailsRequired = "Appointment details required";
+            public const string AppointmentIdRequired = "Appointment Id required";
+            public const string AppointmentNotFound = "Appointment not found";
+            public const string AppointmentsNotFound = "Appointment's not found";
         }
 
         public static class DBResponse

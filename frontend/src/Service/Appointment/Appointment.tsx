@@ -1,12 +1,14 @@
-import type { AppointmentRequest } from "../../Models/Appointment";
+import type { AppointmentDetails, AppointmentRequest } from "../../Models/Appointment";
 import API from "../API/api";
 
 export const GetAllAppointments = () => {
   return API.get("api/Appointment", { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
 };
 
-export const GetAppointmentDetails = (id: number) => {
-  return API.get(`api/Appointment/${id}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
+export const GetAppointmentDetails = async (id: number): Promise<AppointmentDetails> => {
+  const response = await API.get(`api/Appointment/${id}`, { headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` } });
+  return response.data;
+
 };
 
 /**
