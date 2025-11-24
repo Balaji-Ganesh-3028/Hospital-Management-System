@@ -23,13 +23,18 @@ namespace backend.Controllers
         [CustomAuth(Roles.Admin, Roles.FrontDesk)]
         public async Task<IActionResult> GetDashboardDetails()
         {
+            // CONNECT TO DATABASE
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
+                // OPEN CONNECTION
                 await connection.OpenAsync();
 
+                // EXECUTE STORED PROCEDURE
                 using (SqlCommand command = new SqlCommand("sp_get_dashboard_details", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
+
+                    // READ DATA
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
                         if (reader.Read())
